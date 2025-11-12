@@ -1,2 +1,2 @@
-# lfeIsEgg
+# lifeIsEgg
 portfolio
