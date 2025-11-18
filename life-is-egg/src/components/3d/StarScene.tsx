@@ -7,8 +7,7 @@ import { Suspense } from "react";
 
 import BackgroundPlanets from "./BackgroundPlants";
 
-
-export default function MoonScene() {
+export default function StarScene() {
   return (
     <>
       {/* 배경색 검은색 */}
@@ -24,10 +23,6 @@ export default function MoonScene() {
             <ambientLight intensity={0.5} />
             {/* 주변광 설정 */}
             <directionalLight position={[3, 3, 3]} intensity={1} />
-
-            
-
-            
 
             {/* 별 설정 */}
             <Stars

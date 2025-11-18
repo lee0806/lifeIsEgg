@@ -2,7 +2,7 @@
 
 import { useState, useEffect, use } from "react";
 
-import MoonScene from "@/components/3d/moonScene";
+import StarScene from "@/components/3d/StarScene";
 import Moon from "@/components/3d/Moon";
 import Desert from "@/components/3d/Desert";
 import Title from "@/components/ui/Title";
@@ -18,20 +18,27 @@ export default function Home() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  const fadeProgress = Math.min(scrollY / 200, 1);
+
   return (
     <>
-      <main className="relative min-h-screen overflow-hidden bg-black text-white">
-        <MoonScene />
+      <main className="relative h-[200vh] overflow-hidden ">
+        <div className="fixed inset-0 -z-10">
+          {/* 별 */}
+          <StarScene />
+          {/* 달 */}
+          <Moon />
+        </div>
+
         {/* 사막 */}
-        <Desert />
-        {/* 달 */}
-        <Moon />
+        <Desert fadeProgress={fadeProgress} />
+
         {/* 제목 */}
-        <Title />
+        <Title fadeProgress={fadeProgress} />
         {/* GitHub 이동 버튼 */}
-        <GoToGitHub />
+        <GoToGitHub fadeProgress={fadeProgress} />
         {/* 하단 바 */}
-        <BottomBar />
+        <BottomBar fadeProgress={fadeProgress} />
       </main>
     </>
   );

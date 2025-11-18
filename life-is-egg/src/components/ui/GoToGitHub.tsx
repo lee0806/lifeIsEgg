@@ -2,9 +2,10 @@ import React from "react";
 
 type GoToGitHubProps = {
   href?: string;
+  fadeProgress: number;
 };
 
-export default function GoToGitHub({ href }: GoToGitHubProps) {
+export default function GoToGitHub({ href, fadeProgress }: GoToGitHubProps) {
   const link = href ?? "https://github.com/lee0806";
 
   return (
@@ -31,6 +32,10 @@ export default function GoToGitHub({ href }: GoToGitHubProps) {
         hover:text-white
         transition-all duration-200
       "
+      style={{
+        opacity: 1 - fadeProgress,
+        transform: `translateY(${fadeProgress * 40}px)`,
+      }}
     >
       {/* GitHub 아이콘 */}
       <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-black/60">

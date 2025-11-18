@@ -1,8 +1,18 @@
 import React from "react";
 
-export default function BottomBar() {
+type BottomBarProps = {
+  fadeProgress: number;
+};
+
+export default function BottomBar({ fadeProgress }: BottomBarProps) {
   return (
-    <div className="pointer-events-none absolute inset-x-0 bottom-10 flex items-center justify-center">
+    <div
+      className="pointer-events-none absolute inset-x-0 top-180 flex items-center justify-center"
+      style={{
+        opacity: 1 - fadeProgress,
+        transform: `translateY(${fadeProgress * 40}px)`,
+      }}
+    >
       <div className="animate-bounce flex flex-col items-center gap-1 text-white/80">
         <svg
           className="h-6 w-6 md:h-7 md:w-7"

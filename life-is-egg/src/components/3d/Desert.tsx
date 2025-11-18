@@ -1,18 +1,18 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-export default function Desert() {
-  const [scrollY, setScrollY] = useState(0);
-  useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+type DesertProps = {
+  fadeProgress: number;
+};
 
+export default function Desert({ fadeProgress }: DesertProps) {
   return (
     <div
       className="absolute w-full h-screen overflow-hidden bg-transparent opacity-55"
-      style={{ opacity: scrollY < 150 ? 1 : 0 }}
+      style={{
+        opacity: 1 - fadeProgress,
+        transform: `translateY(${fadeProgress * 40}px)`,
+      }}
     >
       {/* Animated 3D Desert Layers */}
       <div className="absolute inset-0 flex items-end justify-center">
