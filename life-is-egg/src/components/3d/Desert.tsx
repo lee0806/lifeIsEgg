@@ -8,7 +8,7 @@ type DesertProps = {
 export default function Desert({ fadeProgress }: DesertProps) {
   return (
     <div
-      className="absolute w-full h-screen overflow-hidden bg-transparent opacity-55"
+      className="absolute w-full h-screen overflow-hidden bg-transparent opacity-55 pointer-events-none"
       style={{
         opacity: 1 - fadeProgress,
         transform: `translateY(${fadeProgress * 40}px)`,

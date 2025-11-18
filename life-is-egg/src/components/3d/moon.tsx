@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Moon() {
   return (
-    <div className="absolute top-25 left-25 z-20 opacity-80">
+    <div className="absolute top-25 left-25 z-20 opacity-80 pointer-events-none">
       <div
         className="w-20 h-20 rounded-full"
         style={{
