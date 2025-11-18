@@ -1,33 +1,16 @@
-"use client";
 import React from "react";
 
-import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
-import * as THREE from "three";
-import { useTexture } from "@react-three/drei";
-
 export default function Moon() {
-  const earthRef = useRef<THREE.Mesh>(null!);
-
-  const texture = useTexture("/textures/moon.jpg");
-
-  useFrame((_, delta) => {
-    if (!earthRef.current) return;
-    earthRef.current.rotation.y += delta * 0.2; // 지구 자전
-  });
-
   return (
-    <>
-      <mesh ref={earthRef}>
-        {/* 구체 (반지름 1, 세그먼트 64 / 64) */}
-        <sphereGeometry args={[1, 64, 64]} />
-        <meshStandardMaterial
-          map={texture}
-          color={"white"}
-          metalness={0}
-          roughness={0.9}
-        />
-      </mesh>
-    </>
+    <div className="absolute top-25 left-25 z-20 opacity-80">
+      <div
+        className="w-20 h-20 rounded-full"
+        style={{
+          background:
+            "radial-gradient(circle at 30% 30%, #fffde1 100%, #fddf72 100%)",
+          boxShadow: "0 0 25px rgba(255, 240, 180, 0.9)",
+        }}
+      ></div>
+    </div>
   );
 }
