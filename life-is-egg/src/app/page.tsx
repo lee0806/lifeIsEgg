@@ -9,8 +9,11 @@ import Title from "@/components/ui/Title";
 import GoToGitHub from "@/components/ui/GoToGitHub";
 import BottomBar from "@/components/ui/BottomBar";
 
+type StarId = "about" | "projects" | "skills" | "contact";
+
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
+  const [activeStar, setActiveStar] = useState<StarId | null>(null);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -19,13 +22,18 @@ export default function Home() {
   }, []);
 
   const fadeProgress = Math.min(scrollY / 200, 1);
+  const starVisibility = Math.min(Math.max((scrollY - 150) / 200, 0), 1);
 
   return (
     <>
       <main className="relative h-[200vh] overflow-hidden ">
         <div className="fixed inset-0 -z-10">
           {/* 별 */}
-          <StarScene />
+          <StarScene
+            starVisibility={starVisibility}
+            activeStar={activeStar}
+            onSelectStar={setActiveStar}
+          />
           {/* 달 */}
           <Moon />
         </div>

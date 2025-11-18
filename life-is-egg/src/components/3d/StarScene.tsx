@@ -6,8 +6,21 @@ import { Stars, OrbitControls } from "@react-three/drei";
 import { Suspense } from "react";
 
 import BackgroundPlanets from "./BackgroundPlants";
+import MenuStar from "./MenuStar";
 
-export default function StarScene() {
+type StarSceneProps = {
+  starVisibility: number;
+  activeStar: StarId | null;
+  onSelectStar: (id: string | null) => void;
+};
+
+type StarId = "about" | "projects" | "skills" | "contact";
+
+export default function StarScene({
+  starVisibility,
+  activeStar,
+  onSelectStar,
+}: StarSceneProps) {
   return (
     <>
       {/* 배경색 검은색 */}
@@ -19,11 +32,6 @@ export default function StarScene() {
         >
           {/* 카메라 위치와 시야각 설정 */}
           <Suspense fallback={null}>
-            {/* 로딩 중일 때 아무것도 표시하지 않음 */}
-            <ambientLight intensity={0.5} />
-            {/* 주변광 설정 */}
-            <directionalLight position={[3, 3, 3]} intensity={1} />
-
             {/* 별 설정 */}
             <Stars
               radius={20}
@@ -34,7 +42,28 @@ export default function StarScene() {
               fade
             />
 
-            {/* <OrbitControls enablePan={false} enableZoom={false} /> */}
+            {/* 메뉴용 반짝이는 큰 별들 */}
+            <MenuStar
+              id="about"
+              position={[-1.8, 0.8, -3]}
+              starVisibility={starVisibility}
+              activeStar={activeStar}
+              onSelectStar={onSelectStar}
+            />
+            <MenuStar
+              id="projects"
+              position={[0, 1.2, -3]}
+              starVisibility={starVisibility}
+              activeStar={activeStar}
+              onSelectStar={onSelectStar}
+            />
+            <MenuStar
+              id="skills"
+              position={[1.6, 0.6, -3]}
+              starVisibility={starVisibility}
+              activeStar={activeStar}
+              onSelectStar={onSelectStar}
+            />
           </Suspense>
         </Canvas>
       </div>
