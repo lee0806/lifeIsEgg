@@ -1,8 +1,19 @@
 import React from "react";
+import { useState, useEffect } from "react";
 
 export default function Desert() {
+  const [scrollY, setScrollY] = useState(0);
+  useEffect(() => {
+    const onScroll = () => setScrollY(window.scrollY);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-transparent opacity-55">
+    <div
+      className="absolute w-full h-screen overflow-hidden bg-transparent opacity-55"
+      style={{ opacity: scrollY < 150 ? 1 : 0 }}
+    >
       {/* Animated 3D Desert Layers */}
       <div className="absolute inset-0 flex items-end justify-center">
         {/* Back layer - furthest */}

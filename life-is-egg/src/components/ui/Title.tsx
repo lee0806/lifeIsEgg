@@ -1,0 +1,19 @@
+import { div } from "framer-motion/client";
+import React from "react";
+
+export default function Title() {
+  return (
+    <>
+      <div className="top-40 pointer-events-none absolute inset-0 flex justify-center z-40">
+        <div className="text-center select-none">
+          <h1 className="text-8xl md:text-12xl font-extrabold tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] animate-fadein-slow">
+            Starlit
+          </h1>
+          <h1 className="text-7xl md:text-8xl font-extrabold tracking-widest text-white/90 mt-2 animate-fadein-slower">
+            Portfolio
+          </h1>
+        </div>
+      </div>
+    </>
+  );
+}

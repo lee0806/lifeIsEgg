@@ -24,3 +24,22 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+
+@keyframes fadein-slow {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadein-slower {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fadein-slow {
+  animation: fadein-slow 1.2s ease-out forwards;
+}
+
+.animate-fadein-slower {
+  animation: fadein-slower 1.8s ease-out forwards;
+}

@@ -25,16 +25,16 @@ export default function MoonScene() {
             {/* 주변광 설정 */}
             <directionalLight position={[3, 3, 3]} intensity={1} />
 
-            <BackgroundPlanets />
+            
 
             
 
             {/* 별 설정 */}
             <Stars
-              radius={40}
-              depth={50}
+              radius={20}
+              depth={10}
               count={2000}
-              factor={3}
+              factor={2}
               saturation={0}
               fade
             />
