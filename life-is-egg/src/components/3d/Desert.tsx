@@ -1,9 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 
-type DesertProps = {
-  fadeProgress: number;
-};
+import { DesertProps } from "@/types/index";
 
 export default function Desert({ fadeProgress }: DesertProps) {
   return (

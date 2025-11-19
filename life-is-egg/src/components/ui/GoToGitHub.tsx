@@ -1,9 +1,5 @@
 import React from "react";
-
-type GoToGitHubProps = {
-  href?: string;
-  fadeProgress: number;
-};
+import { GoToGitHubProps } from "@/types/index";
 
 export default function GoToGitHub({ href, fadeProgress }: GoToGitHubProps) {
   const link = href ?? "https://github.com/lee0806";

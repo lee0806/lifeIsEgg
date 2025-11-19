@@ -1,8 +1,5 @@
 import React from "react";
-
-type BottomBarProps = {
-  fadeProgress: number;
-};
+import { BottomBarProps } from "@/types/index";
 
 export default function BottomBar({ fadeProgress }: BottomBarProps) {
   return (

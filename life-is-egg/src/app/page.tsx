@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, use } from "react";
+import { StarId } from "@/types";
 
 import StarScene from "@/components/3d/StarScene";
 import Moon from "@/components/3d/Moon";
@@ -8,8 +9,6 @@ import Desert from "@/components/3d/Desert";
 import Title from "@/components/ui/Title";
 import GoToGitHub from "@/components/ui/GoToGitHub";
 import BottomBar from "@/components/ui/BottomBar";
-
-type StarId = "about" | "projects" | "skills" | "contact";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -27,8 +26,8 @@ export default function Home() {
 
   return (
     <>
-      <main className="relative min-h-screen overflow-hidden ">
-        <div className="fixed inset-0 ">
+      <main className="relative min-h-screen overflow-hidden">
+        <div className="fixed inset-0 h-screen snap-start">
           {/* 별 */}
           <StarScene
             starVisibility={starVisibility}
@@ -51,7 +50,7 @@ export default function Home() {
           <BottomBar fadeProgress={fadeProgress} />
         </section>
 
-        <section className="min-h-screen flex items-center justify-center">
+        <section className="h-screen flex items-center justify-center">
           <div className="max-w-3xl px-4 py-24 text-center">
             {/* 이후 About / Projects 등 콘텐츠 추가 */}
             <h2 className="text-3xl font-semibold mb-4">Explore the Stars</h2>

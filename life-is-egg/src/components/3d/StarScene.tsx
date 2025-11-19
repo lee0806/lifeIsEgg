@@ -5,16 +5,11 @@ import { Canvas } from "@react-three/fiber";
 import { Stars, Line } from "@react-three/drei";
 import { Suspense } from "react";
 
-// import BackgroundPlanets from "./BackgroundPlants";
+import { StarId } from "@/types";
+import { StarSceneProps } from "@/types";
+
 import MenuStar from "./MenuStar";
 
-type StarSceneProps = {
-  starVisibility: number;
-  activeStar: StarId | null;
-  onSelectStar: (id: StarId | null) => void;
-};
-
-type StarId = "about" | "projects" | "skills" | "contact";
 
 export default function StarScene({
   starVisibility,

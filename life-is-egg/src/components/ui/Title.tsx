@@ -1,8 +1,5 @@
 import React from "react";
-
-type TitleProps = {
-  fadeProgress: number;
-};
+import { TitleProps } from "@/types/index";
 
 export default function Title({ fadeProgress }: TitleProps) {
   return (

@@ -5,15 +5,8 @@ import { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 
-type StarId = "about" | "projects" | "skills" | "contact"; // 별들이 어떤 항목을 나타내는지
-
-type MenuStarProps = {
-  id: StarId; // 별의 ID
-  position: [number, number, number]; // 별의 3D 위치
-  starVisibility: number; // 0 ~ 1
-  activeStar: StarId | null; // 현재 선택된 별
-  onSelectStar: (id: StarId) => void; // 별 선택 시 호출되는 함수
-};
+import { StarId } from "@/types/index";
+import { MenuStarProps } from "@/types/index";
 
 // 오각별 2D Shape 생성 함수 (라운드 코너 적용)
 function createStarShape(
