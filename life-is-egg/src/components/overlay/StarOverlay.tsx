@@ -6,14 +6,53 @@ import { useStateStore } from "@/store/starStore";
 import { X, ArrowRight } from "lucide-react";
 
 const STAR_OVERLAY_POSITION: Record<StarId, { top: string; left: string }> = {
-  about: { top: "60%", left: "27%" },     // 첫 번째 별 주변 (위치는 나중에 조정 가능)
-  projects: { top: "35%", left: "55%" },  // 두 번째 별 주변
-  skills: { top: "50%", left: "65%" },    // 세 번째 별 주변
-  contact: { top: "40%", left: "70%" },   // 네 번째 별 주변
+  about: { top: "53%", left: "4%" }, // 첫 번째 별 주변 (위치는 나중에 조정 가능)
+  projects: { top: "35%", left: "45%" }, // 두 번째 별 주변
+  skills: { top: "85%", left: "38%" }, // 세 번째 별 주변
+  contact: { top: "74%", left: "75%" }, // 네 번째 별 주변
+};
+
+const STAR_CONTENT: Record<
+  StarId,
+  {
+    title: string;
+    subtitle: string;
+    description: string;
+  }
+> = {
+  about: {
+    title: "About Me",
+    subtitle: "Frontend Developer",
+    description:
+      "안녕하세요. 프론트엔드 개발자 이세현입니다. 교내 및 공모전 프로젝트를 진행하면서 프론트엔드 개발 경험을 쌓으면서 성장해나가고 있습니다.",
+  },
+
+  projects: {
+    title: "Projects",
+    subtitle: "NETCC 12기, 한국정보기술학회, 기초-심화 캡스톤",
+    description:
+      "CCTV 기반 도로 파손 탐지, 유동인구 데이터 기반 창업 입지 추천 및 손익 분석 시스템 등 다양한 프로젝트를 진행했습니다.",
+  },
+
+  skills: {
+    title: "Skills",
+    subtitle: "Tech Stack",
+    description:
+      "JavaScript, TypeScript, React, Next.js, Tailwind, Zustand 등의 Frontend 기술을 사용합니다.",
+  },
+
+  contact: {
+    title: "Contact",
+    subtitle: "Let’s Connect",
+    description:
+      "Github 및 이메일을 통해 언제든지 연락주세요! 함께 멋진 프로젝트를 만들어가요.",
+  },
 };
 
 export default function StarOverlay() {
   const { activeStar, closeStar } = useStateStore();
+
+  const data = activeStar ? STAR_CONTENT[activeStar] : null;
 
   // 활성화된 별이 없으면 렌더링하지 않음
   if (!activeStar) return null;
@@ -33,9 +72,6 @@ export default function StarOverlay() {
         onClick={(e) => e.stopPropagation()}
       >
         <div className="relative bg-gray-900/95 backdrop-blur-xl rounded-2xl border border-white/10 shadow-2xl overflow-hidden">
-          {/* 상단 색 띠 */}
-          <div className="h-1 bg-gradient-to-r from-indigo-400 via-sky-400 to-violet-500" />
-
           {/* 닫기 버튼 */}
           <button
             onClick={closeStar}
@@ -48,19 +84,16 @@ export default function StarOverlay() {
           {/* 내용 영역 */}
           <div className="p-4">
             <h2 className="text-base font-semibold text-white mb-1">
-              타이틀
+              {data?.title}
             </h2>
-            <p className="text-xs text-gray-400 mb-3">서브 타이틀</p>
+            <p className="text-xs text-gray-400 mb-3">{data?.subtitle}</p>
 
             <p className="text-xs text-gray-300 leading-relaxed mb-4">
-              선택한 별에 대한 간단한 설명이 들어가는 영역입니다. 위치는 각
-              별 주변에 작게 떠 있는 툴팁 형태로 표시됩니다.
+              {data?.description}
             </p>
 
             <div className="flex items-center justify-between gap-2">
-              <button
-                className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-sky-500 text-xs font-semibold text-white hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
-              >
+              <button className="flex-1 inline-flex items-center justify-center gap-1.5 px-3 py-2 rounded-lg bg-gradient-to-r from-indigo-500 to-sky-500 text-xs font-semibold text-white hover:shadow-md hover:scale-[1.02] active:scale-[0.98] transition-all duration-200">
                 <span>자세히 보기</span>
                 <ArrowRight className="w-3.5 h-3.5" />
               </button>

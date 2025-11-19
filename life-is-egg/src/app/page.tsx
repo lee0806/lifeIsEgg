@@ -9,7 +9,7 @@ import Desert from "@/components/3d/Desert";
 import Title from "@/components/ui/Title";
 import GoToGitHub from "@/components/ui/GoToGitHub";
 import BottomBar from "@/components/ui/BottomBar";
-import StarOverlay from "@/components/overlay/StarOverlayFirst";
+import StarOverlay from "@/components/overlay/StarOverlay";
 import { useStateStore } from "@/store/starStore";
 
 export default function Home() {
