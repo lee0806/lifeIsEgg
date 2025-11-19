@@ -8,15 +8,16 @@ import { Suspense } from "react";
 import { StarId } from "@/types";
 import { useStateStore } from "@/store/starStore";
 import { StarSceneProps } from "@/types";
+import Character from "./Character";
 
 import MenuStar from "./MenuStar";
 
 export default function StarScene({ starVisibility }: StarSceneProps) {
   const constellationPoints: [number, number, number][] = [
-    [-2.4, 1.5, -4],  // 기존보다 2배 넓게 좌측 상단
-    [-0.6, 0.7, -4],  // 두 번째 별은 중앙 쪽으로 살짝
-    [1.2, -0.4, -4],  // 세 번째 별을 오른쪽 아래로 더 멀리
-    [2.4, -1.5, -4],  // 마지막 별을 더 오른쪽 아래로 이동
+    [-2.4, 1.5, -4], // 기존보다 2배 넓게 좌측 상단
+    [-0.6, 0.7, -4], // 두 번째 별은 중앙 쪽으로 살짝
+    [1.2, -0.4, -4], // 세 번째 별을 오른쪽 아래로 더 멀리
+    [2.4, -1.5, -4], // 마지막 별을 더 오른쪽 아래로 이동
   ];
 
   const { activeStar } = useStateStore();
@@ -32,6 +33,11 @@ export default function StarScene({ starVisibility }: StarSceneProps) {
         >
           {/* 카메라 위치와 시야각 설정 */}
           <Suspense fallback={null}>
+            {/* <Character
+              position={[1.8, -0.2, -4]} // 화면에서 보이는 위치
+              scale={0.2} // 크기
+            /> */}
+
             {/* 별 설정 */}
             <Stars
               radius={22} // 별 구체의 반지름

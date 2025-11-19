@@ -18,7 +18,7 @@ export default function GoToGitHub({ href, fadeProgress }: GoToGitHubProps) {
         bg-white/5
         px-4 py-2
         text-xs md:text-sm
-        font-medium
+        font-[600]
         text-slate-50/90
         backdrop-blur-md
         shadow-[0_0_0_1px_rgba(15,23,42,0.4)]

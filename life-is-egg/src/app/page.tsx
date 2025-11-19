@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, use } from "react";
+import { useState, useEffect, useRef } from "react";
 import { StarId } from "@/types";
 
 import StarScene from "@/components/3d/StarScene";
@@ -11,17 +11,66 @@ import GoToGitHub from "@/components/ui/GoToGitHub";
 import BottomBar from "@/components/ui/BottomBar";
 import StarOverlay from "@/components/overlay/StarOverlay";
 import { useStateStore } from "@/store/starStore";
+import About from "@/components/ui/About";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
 
   const activeStar = useStateStore((state) => state.activeStar);
   const setActiveStar = useStateStore((state) => state.setActiveStar);
 
   useEffect(() => {
-    const onScroll = () => setScrollY(window.scrollY);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const el = scrollRef.current;
+    if (!el) return;
+
+    const onScroll = () => setScrollY(el.scrollTop);
+    el.addEventListener("scroll", onScroll);
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+
+    let isAnimating = false;
+    let currentSection = 0;
+    const sectionCount = 3; // Desert, StarOverlay, About
+
+    const onWheel = (e: WheelEvent) => {
+      if (!el) return;
+      if (isAnimating) return;
+
+      const delta = e.deltaY;
+      if (delta === 0) return;
+
+      e.preventDefault();
+
+      if (delta > 0 && currentSection < sectionCount - 1) {
+        currentSection += 1;
+      } else if (delta < 0 && currentSection > 0) {
+        currentSection -= 1;
+      } else {
+        return;
+      }
+
+      isAnimating = true;
+      const targetTop = window.innerHeight * currentSection;
+
+      el.scrollTo({
+        top: targetTop,
+        behavior: "smooth",
+      });
+
+      setTimeout(() => {
+        isAnimating = false;
+      }, 700); // 스크롤 속도 (ms 단위, 느리게 이동)
+    };
+
+    el.addEventListener("wheel", onWheel, { passive: false });
+    return () => {
+      el.removeEventListener("wheel", onWheel as any);
+    };
   }, []);
 
   const fadeProgress = Math.min(scrollY / 200, 1);
@@ -30,7 +79,10 @@ export default function Home() {
 
   return (
     <>
-      <main className="relative min-h-screen overflow-hidden">
+      <main
+          ref={scrollRef}
+          className="relative h-screen overflow-x-hidden overflow-y-scroll scroll-smooth"
+        >
         <div className="fixed inset-0 h-screen snap-start">
           {/* 별 */}
           <StarScene
@@ -42,7 +94,7 @@ export default function Home() {
           <Moon />
         </div>
 
-        <section className="relative h-screen overflow-hidden">
+        <section className="relative h-screen overflow-hidden snap-start">
           {/* 사막 */}
           <Desert fadeProgress={fadeProgress_2} />
 
@@ -54,17 +106,14 @@ export default function Home() {
           <BottomBar fadeProgress={fadeProgress} />
         </section>
 
-        <section className="h-screen flex items-center justify-center">
-          <div className="max-w-3xl px-4 py-24 text-center">
-            {/* 이후 About / Projects 등 콘텐츠 추가 */}
-            <h2 className="text-3xl font-semibold mb-4">Explore the Stars</h2>
-            <p className="text-sm text-gray-300">
-              아래 영역은 별을 클릭해서 섹션을 여는 인터랙션을 배치할
-              자리입니다.
-            </p>
-          </div>
+        <section className="h-screen flex items-center justify-center snap-start">
           {activeStar && <StarOverlay />}
         </section>
+
+        <section className="h-screen flex items-center justify-center snap-start">
+          <About />
+        </section>
+
       </main>
     </>
   );
