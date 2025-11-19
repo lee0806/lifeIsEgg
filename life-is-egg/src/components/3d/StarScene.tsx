@@ -6,23 +6,21 @@ import { Stars, Line } from "@react-three/drei";
 import { Suspense } from "react";
 
 import { StarId } from "@/types";
+import { useStateStore } from "@/store/starStore";
 import { StarSceneProps } from "@/types";
 
 import MenuStar from "./MenuStar";
 
-
-export default function StarScene({
-  starVisibility,
-  activeStar,
-  onSelectStar,
-}: StarSceneProps) {
+export default function StarScene({ starVisibility }: StarSceneProps) {
   const constellationPoints: [number, number, number][] = [
-    // 별자리 점들 좌표 (전체를 약간 오른쪽으로 이동)
-    [-1.2, 1.4, -3], // 왼쪽 위
-    [-0.2, 0.9, -3], // 중간
-    [0.6, 0.4, -3], // 오른쪽 아래로 내려가는 지점
-    [1.0, -0.1, -3], // 가장 아래쪽 작은 별
+    [-2.4, 1.5, -4],  // 기존보다 2배 넓게 좌측 상단
+    [-0.6, 0.7, -4],  // 두 번째 별은 중앙 쪽으로 살짝
+    [1.2, -0.4, -4],  // 세 번째 별을 오른쪽 아래로 더 멀리
+    [2.4, -1.5, -4],  // 마지막 별을 더 오른쪽 아래로 이동
   ];
+
+  const { activeStar } = useStateStore();
+
   return (
     <>
       {/* 배경색 검은색 */}
@@ -59,28 +57,24 @@ export default function StarScene({
               position={constellationPoints[0]}
               starVisibility={starVisibility}
               activeStar={activeStar}
-              onSelectStar={onSelectStar}
             />
             <MenuStar
               id="projects"
               position={constellationPoints[1]}
               starVisibility={starVisibility}
               activeStar={activeStar}
-              onSelectStar={onSelectStar}
             />
             <MenuStar
               id="skills"
               position={constellationPoints[2]}
               starVisibility={starVisibility}
               activeStar={activeStar}
-              onSelectStar={onSelectStar}
             />
             <MenuStar
               id="contact"
               position={constellationPoints[3]}
               starVisibility={starVisibility}
               activeStar={activeStar}
-              onSelectStar={onSelectStar}
             />
           </Suspense>
         </Canvas>

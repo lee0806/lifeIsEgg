@@ -9,10 +9,14 @@ import Desert from "@/components/3d/Desert";
 import Title from "@/components/ui/Title";
 import GoToGitHub from "@/components/ui/GoToGitHub";
 import BottomBar from "@/components/ui/BottomBar";
+import StarOverlay from "@/components/overlay/StarOverlayFirst";
+import { useStateStore } from "@/store/starStore";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
-  const [activeStar, setActiveStar] = useState<StarId | null>(null);
+
+  const activeStar = useStateStore((state) => state.activeStar);
+  const setActiveStar = useStateStore((state) => state.setActiveStar);
 
   useEffect(() => {
     const onScroll = () => setScrollY(window.scrollY);
@@ -59,6 +63,7 @@ export default function Home() {
               자리입니다.
             </p>
           </div>
+          {activeStar && <StarOverlay />}
         </section>
       </main>
     </>
