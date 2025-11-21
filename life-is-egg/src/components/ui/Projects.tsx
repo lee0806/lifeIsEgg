@@ -9,63 +9,54 @@ export default function Projects() {
       id: 1,
       title: "Helios",
       description: "CCTV 영상 데이터를 이용한 실시간 도로 노후화 탐지 시스템",
-      tech: ["Next.js", "Three.js", "TypeScript", "TailwindCSS"],
-
+      tech: [
+        "React",
+        "TypeScript",
+        "TailwindCSS",
+        "Zustand",
+        "ReactQuery",
+        "AI",
+        "YOLOv8",
+      ],
       liveUrl: "#",
-      githubUrl: "#",
-      image: "/project/Helios.png",
-
-      color: "from-purple-500/20 to-blue-500/20",
+      githubUrl: "https://github.com/Helios-CCTV/Helios-web",
     },
     {
       id: 2,
       title: "HotSpot",
-      description: "데이터 시각화와 실시간 인터랙션이 결합된 대시보드 플랫폼",
-      tech: ["React", "D3.js", "WebSocket", "Node.js"],
-
+      description:
+        "유동인구 데이터 기반 창업 입지 추천 및 손익 분석 플랫폼 (배포 레포)",
+      tech: ["React", "JavaScript", "CSS", "ReactQuery", "XGBoost"],
       liveUrl: "#",
-      githubUrl: "#",
-      image: "/project/Helios.png",
-
-      color: "from-green-500/20 to-teal-500/20",
+      githubUrl: "https://github.com/lee0806/HotSpotDistribution",
     },
     {
       id: 3,
-      title: "Motion Design System",
-      description:
-        "재사용 가능한 애니메이션 컴포넌트 라이브러리와 디자인 시스템",
-      tech: ["React", "Framer Motion", "Storybook", "CSS-in-JS"],
-
+      title: "doRan",
+      description: "자신만의 따뜻한 경험과 이야기를 공유하는 커뮤니티 (진행중)",
+      tech: ["Next.js", "TypeScript", "TailwindCSS", "Node.js"],
       liveUrl: "#",
-      githubUrl: "#",
-      image: "/project/Helios.png",
-
-      color: "from-pink-500/20 to-orange-500/20",
+      githubUrl: "https://github.com/lee0806/doRan",
     },
     {
       id: 4,
-      title: "AI-Powered Chat Interface",
-      description:
-        "자연어 처리 기반 실시간 채팅 인터페이스와 스마트 응답 시스템",
-      tech: ["Next.js", "OpenAI API", "Socket.io", "Prisma"],
-
+      title: "Portfolio",
+      description: "개인 포트폴리오 웹사이트",
+      tech: ["Next.js", "TypeScript", "Vercel", "Zustand"],
       liveUrl: "#",
       githubUrl: "#",
-      image: "/project/Helios.png",
-
-      color: "from-indigo-500/20 to-purple-500/20",
     },
   ];
 
   return (
-    <div className="relative z-60 w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl p-8">
+    <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-50">
       {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-6xl font-black text-white mb-4 tracking-tight">
+      <div className="text-left max-w-6xl w-full mb-12">
+        <h1 className="text-6xl font-black text-gray-200 mb-4 tracking-tight">
           PROJECTS
         </h1>
-        <p className="text-xl text-white/80 font-medium max-w-2xl leading-relaxed">
-          기술과 창의성의 경계를 넘나드는 프로젝트들을 소개합니다.
+        <p className="text-xl text-gray-200/80 font-medium max-w-2xl leading-relaxed">
+          제가 진행했던 프로젝트들을 모아봤어요.
         </p>
       </div>
 
@@ -77,25 +68,8 @@ export default function Projects() {
               key={project.id}
               className="group relative overflow-hidden cursor-pointer"
             >
-              {/* Project Image/Icon Area */}
-              <div className="relative h-75 overflow-hidden bg-linear-to-br from-white/5 to-white/10 flex items-center justify-center">
-                {project.image.startsWith("/") ? (
-                  <>
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 600px"
-                    />
-                  </>
-                ) : (
-                  <div className="text-6xl">{project.image}</div>
-                )}
-              </div>
-
               {/* Project Content */}
-              <div className="p-6">
+              <div className="py-6 px-2">
                 <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors">
                   {project.title}
                 </h3>
@@ -106,7 +80,7 @@ export default function Projects() {
 
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.slice(0, 3).map((tech, index) => (
+                  {project.tech.slice(0, 5).map((tech, index) => (
                     <span
                       key={index}
                       className="px-2 py-1 bg-white/10 border border-white/20 rounded-lg text-white/80 text-xs font-medium"
@@ -114,7 +88,7 @@ export default function Projects() {
                       {tech}
                     </span>
                   ))}
-                  {project.tech.length > 3 && (
+                  {project.tech.length > 5 && (
                     <span className="px-2 py-1 bg-white/10 border border-white/20 rounded-lg text-white/60 text-xs">
                       +{project.tech.length - 3}
                     </span>
