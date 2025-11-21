@@ -8,34 +8,33 @@ const techStack = [
   {
     id: 1,
     title: "개발 기술",
-    techs: ["React", "Next.js", "TypeScript", "Three.js"],
+    techs: ["React", "Next.js", "TypeScript", "JavaScript", "Python"],
   },
   {
     id: 2,
     title: "스타일링 및 마크업",
-    techs: ["TailwindCSS", "Framer Motion", "SCSS"],
+    techs: ["TailwindCSS", "CSS"],
   },
   {
     id: 3,
     title: "형상 관리",
-    techs: ["Git", "GitHub", "Git Flow", "Github Flow"],
+    techs: ["Git", "GitHub", "Git Flow", "GitHub Flow"],
   },
   {
     id: 4,
-    title: "서비스",
-    techs: ["UI/UX", "협업", "문제 해결"],
+    title: "UI/UX 디자인",
+    techs: ["Figma"],
   },
 ];
-
 
 function RocketModel() {
   const model = useGLTF("/models/rocket.glb");
 
   return (
-    <primitive 
-      object={model.scene} 
-      scale={5.5} 
-      rotation={[Math.PI / 6, Math.PI / 30, -Math.PI / 4]} 
+    <primitive
+      object={model.scene}
+      scale={5.5}
+      rotation={[Math.PI / 6, Math.PI / 30, -Math.PI / 4]}
     />
   );
 }
@@ -44,7 +43,7 @@ export default function About() {
   return (
     <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24">
       {/* 3D Moon on the right side */}
-      <div className="pointer-events-none absolute top-29 left-120 -translate-y-1/2 w-[100px] h-[100px] opacity-80">
+      <div className="pointer-events-none absolute top-29 left-120 -translate-y-1/2 w-[100px] h-[100px] opacity-60">
         <Canvas camera={{ position: [0, 0, 3.2], fov: 45 }}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[2, 3, 4]} intensity={1.1} />
