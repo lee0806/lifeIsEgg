@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
+  --background: #171717;
   --foreground: #171717;
 }
 
@@ -26,6 +26,13 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
+}
+
+.paper-dark-bg {
+  background-color: #0e0e0e;
+  background-image: url("/textures/paper-dark.png");
+  background-repeat: repeat;
+  background-size: auto;
 }
 
 @keyframes fadein-slow {

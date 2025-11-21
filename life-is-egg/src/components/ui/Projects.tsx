@@ -1,0 +1,167 @@
+"use client";
+
+import React from "react";
+
+export default function Projects() {
+  const projects = [
+    {
+      id: 1,
+      title: "Life is Egg",
+      description:
+        "3D 인터랙티브 포트폴리오 웹사이트. Three.js와 React를 활용한 몰입형 사용자 경험",
+      tech: ["Next.js", "Three.js", "TypeScript", "TailwindCSS"],
+      status: "진행중",
+      image: "🌌",
+      color: "from-purple-500/20 to-blue-500/20",
+    },
+    {
+      id: 2,
+      title: "Interactive Dashboard",
+      description: "데이터 시각화와 실시간 인터랙션이 결합된 대시보드 플랫폼",
+      tech: ["React", "D3.js", "WebSocket", "Node.js"],
+      status: "완료",
+      image: "📊",
+      color: "from-green-500/20 to-teal-500/20",
+    },
+    {
+      id: 3,
+      title: "Motion Design System",
+      description:
+        "재사용 가능한 애니메이션 컴포넌트 라이브러리와 디자인 시스템",
+      tech: ["React", "Framer Motion", "Storybook", "CSS-in-JS"],
+      status: "완료",
+      image: "🎨",
+      color: "from-pink-500/20 to-orange-500/20",
+    },
+    {
+      id: 4,
+      title: "AI-Powered Chat Interface",
+      description:
+        "자연어 처리 기반 실시간 채팅 인터페이스와 스마트 응답 시스템",
+      tech: ["Next.js", "OpenAI API", "Socket.io", "Prisma"],
+      status: "계획중",
+      image: "🤖",
+      color: "from-indigo-500/20 to-purple-500/20",
+    },
+  ];
+
+  return (
+    <div className="relative z-60 w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl p-8">
+      {/* Header */}
+
+      {/* Projects Grid */}
+      <div className="max-w-7xl w-full">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {projects.map((project) => (
+            <div
+              key={project.id}
+              className={`group relative bg-gradient-to-br ${project.color} backdrop-blur-md border border-white/20 rounded-3xl p-8 hover:transform hover:scale-105 transition-all duration-500 cursor-pointer`}
+            >
+              {/* Status Badge */}
+              <div className="absolute top-4 right-4">
+                <span
+                  className={`px-3 py-1 rounded-full text-xs font-semibold ${
+                    project.status === "완료"
+                      ? "bg-green-500/20 text-green-300 border border-green-500/30"
+                      : project.status === "진행중"
+                      ? "bg-yellow-500/20 text-yellow-300 border border-yellow-500/30"
+                      : "bg-blue-500/20 text-blue-300 border border-blue-500/30"
+                  }`}
+                >
+                  {project.status}
+                </span>
+              </div>
+
+              {/* Project Icon */}
+              <div className="text-6xl mb-6">{project.image}</div>
+
+              {/* Project Content */}
+              <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors">
+                {project.title}
+              </h3>
+
+              <p className="text-white/80 leading-relaxed mb-6 text-sm">
+                {project.description}
+              </p>
+
+              {/* Tech Stack */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {project.tech.map((tech, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 bg-white/10 border border-white/20 rounded-full text-white/90 text-xs font-medium"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+
+              {/* Action Button */}
+              <div className="flex items-center justify-between">
+                <button className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors">
+                  <span className="text-sm font-medium">자세히 보기</span>
+                  <svg
+                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                    />
+                  </svg>
+                </button>
+
+                <div className="flex space-x-2">
+                  <button className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors">
+                    <svg
+                      className="w-4 h-4 text-white/80"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      />
+                    </svg>
+                  </button>
+                  <button className="p-2 bg-white/10 hover:bg-white/20 rounded-full transition-colors">
+                    <svg
+                      className="w-4 h-4 text-white/80"
+                      fill="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Call to Action */}
+      <div className="mt-12 text-center">
+        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 max-w-2xl">
+          <h3 className="text-2xl font-bold text-white mb-4">
+            새로운 프로젝트를 함께 만들어보세요
+          </h3>
+          <p className="text-white/80 mb-6 leading-relaxed">
+            혁신적인 아이디어와 기술적 도전을 통해 의미 있는 결과물을
+            만들어갑니다.
+          </p>
+          <button className="px-8 py-4 bg-white/20 hover:bg-white/30 border border-white/30 rounded-2xl text-white font-semibold transition-all duration-300 transform hover:scale-105">
+            협업 문의하기
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}

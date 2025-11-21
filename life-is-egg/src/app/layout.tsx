@@ -26,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html className={`${SUIT.variable}`} lang="en">
-      <body>{children}</body>
+      <body className="paper-dark-bg">{children}</body>
     </html>
   );
 }

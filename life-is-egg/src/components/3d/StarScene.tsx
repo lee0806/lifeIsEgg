@@ -25,7 +25,7 @@ export default function StarScene({ starVisibility }: StarSceneProps) {
   return (
     <>
       {/* 배경색 검은색 */}
-      <div className="fixed inset-0 bg-gradient-to-b from-[#05031a] via-[#20145a] to-[#5a1abf]">
+      <div className="absolute inset-0 bg-gradient-to-b from-[#05031a] via-[#20145a] to-[#5a1abf]">
         <Canvas
           camera={{ position: [0, 0, 4], fov: 40 }}
           gl={{ alpha: true }}

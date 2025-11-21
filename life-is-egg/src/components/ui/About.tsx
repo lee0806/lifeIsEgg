@@ -2,26 +2,100 @@
 
 import React from "react";
 
+const techStack = [
+  {
+    id: 1,
+    title: "개발 기술",
+    techs: ["React", "Next.js", "TypeScript", "Three.js"],
+  },
+  {
+    id: 2,
+    title: "스타일링 및 마크업",
+    techs: ["TailwindCSS", "Framer Motion", "SCSS"],
+  },
+  {
+    id: 3,
+    title: "형상 관리",
+    techs: ["Git", "GitHub", "Git Flow", "Github Flow"],
+  },
+  {
+    id: 4,
+    title: "서비스",
+    techs: ["UI/UX", "협업", "문제 해결"],
+  },
+];
+
 export default function About() {
   return (
-    <div className="w-full max-w-5xl h-full max-h-10xl flex flex-col">
-      <section className="relative z-60 text-[36px] font-[900] mt-30 text-white">
-        ABOUT ME
-      </section>
-      <section className="relative z-60 w-full min-h-screen items-center justify-center">
-        {/* Skill Highlight Box */}
-
-        <div className=" bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl px-10 py-8 md:px-16 md:py-16 text-left">
-          <ul className="text-gray-200 font-main font-[500] text-lg md:text-xl leading-relaxed space-y-3">
-            <li>• 인터랙티브 Web Experience 개발</li>
-            <li>• React · Next.js 기반 프론트엔드 아키텍처 설계</li>
-            <li>• Three.js · R3F 기반 3D 시각 효과 및 사용자 인터랙션 구현</li>
-            <li>• TailwindCSS · Design System 기반 UI 구조화</li>
-            <li>• 데이터 기반 애니메이션 · 시각화 구현</li>
-            <li>• 프로젝트 구조 관리 · 재사용 가능한 컴포넌트 패턴 설계</li>
-          </ul>
+    <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24">
+      <section className="text-left space-y-6 w-full max-w-6xl mx-auto">
+        <div className="text-6xl font-[800] leading-tight text-gray-400">
+          ABOUT ME
         </div>
       </section>
+
+      <div className="w-full max-w-6xl mx-auto space-y-10 mt-20">
+        {/* 상단 소개 영역 */}
+        <section className="space-y-4 text-left">
+          <p className="text-sm font-[500] text-gray-400">
+            작은 시작, 의미 있는 연결
+          </p>
+          <p className="text-lg md:text-xl leading-relaxed text-gray-200">
+            <p className="text-lg md:text-xl leading-relaxed text-gray-200">
+              안녕하세요! 저는 프론트엔드 개발자 이세현입니다.
+            </p>
+            저는 누구보다 성장하고 팀에서 필요한 개발자가 되는 것이 꿈입니다.
+            사용자의 문제를 해결하고 팀과 함께 성장하는 개발자가 되고자 합니다.
+            팀 전체의 생산성을 높이고 서로를 이해하며 협력하는 문화를 만들어가는
+            데 기여하고 싶습니다.
+            <p className="text-lg md:text-xl leading-relaxed text-gray-200">
+              팀원들과 함께 &#34;사용자가 원하는 서비스가 무엇일까?&#34;,
+              &#34;복잡한 데이터를 사용자에게 어떻게 제공할까?&#34; 고민하며
+              사용자를 위한 서비스를 만들어 왔습니다.
+            </p>
+            <p className="text-lg md:text-xl leading-relaxed text-gray-200">
+              사용자의 요구사항을 빠르게 파악하고 문제를 찾아내 해결하는
+              개발자가 되고자 합니다. 사용자가 실제로 필요한 부분을 고민하고
+              팀원들과 함께 더 나은 서비스를 구현하는 것이 저의 목표입니다.
+            </p>
+          </p>
+        </section>
+
+        {/* 구분선 */}
+        <div className="w-full h-px bg-white/20" />
+
+        {/* 기술 카드 섹션 */}
+        <section className="space-y-6">
+          <p className="text-sm text-gray-400">나의 기술들</p>
+          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
+            {techStack.map((stack) => (
+              <div
+                key={stack.id}
+                className="relative flex flex-col justify-between h-64 rounded-3xl bg-purple-300/85 text-slate-900 px-6 py-6 shadow-[0_18px_45px_rgba(0,0,0,0.25)] transition-all duration-300 ease-out transform hover:-translate-y-3 hover:shadow-[0_25px_60px_rgba(0,0,0,0.35)] hover:scale-[1.02]"
+              >
+                <div className="flex items-start justify-between mb-4">
+                  <h3 className="text-2xl font-bold tracking-tight">
+                    {stack.title}
+                  </h3>
+                  <div className="flex items-center justify-center w-10 h-10 rounded-full border border-slate-900/70 text-base font-semibold">
+                    {stack.id}
+                  </div>
+                </div>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {stack.techs.map((tech, index) => (
+                    <span
+                      key={index}
+                      className="px-3 py-1 rounded-full bg-white/80 text-slate-900 text-xs md:text-sm font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      </div>
     </div>
   );
 }
