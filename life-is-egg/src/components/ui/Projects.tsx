@@ -10,7 +10,7 @@ export default function Projects() {
       title: "Helios",
       description: "CCTV 영상 데이터를 이용한 실시간 도로 노후화 탐지 시스템",
       tech: ["Next.js", "Three.js", "TypeScript", "TailwindCSS"],
-      status: "완료",
+
       liveUrl: "#",
       githubUrl: "#",
       image: "/project/Helios.png",
@@ -22,7 +22,7 @@ export default function Projects() {
       title: "HotSpot",
       description: "데이터 시각화와 실시간 인터랙션이 결합된 대시보드 플랫폼",
       tech: ["React", "D3.js", "WebSocket", "Node.js"],
-      status: "완료",
+
       liveUrl: "#",
       githubUrl: "#",
       image: "/project/Helios.png",
@@ -35,7 +35,7 @@ export default function Projects() {
       description:
         "재사용 가능한 애니메이션 컴포넌트 라이브러리와 디자인 시스템",
       tech: ["React", "Framer Motion", "Storybook", "CSS-in-JS"],
-      status: "완료",
+
       liveUrl: "#",
       githubUrl: "#",
       image: "/project/Helios.png",
@@ -48,7 +48,7 @@ export default function Projects() {
       description:
         "자연어 처리 기반 실시간 채팅 인터페이스와 스마트 응답 시스템",
       tech: ["Next.js", "OpenAI API", "Socket.io", "Prisma"],
-      status: "완료",
+
       liveUrl: "#",
       githubUrl: "#",
       image: "/project/Helios.png",
@@ -77,21 +77,6 @@ export default function Projects() {
               key={project.id}
               className="group relative overflow-hidden cursor-pointer"
             >
-              {/* Status Badge */}
-              <div className="absolute top-4 right-4 z-10">
-                <span
-                  className={`px-3 py-1 rounded-full text-xs font-semibold ${
-                    project.status === "완료"
-                      ? "bg-green-500/20 text-green-300 border border-green-500/30"
-                      : project.status === "진행중"
-                      ? "bg-yellow-500/20 text-yellow-300 border border-yellow-500/30"
-                      : "bg-blue-500/20 text-blue-300 border border-blue-500/30"
-                  }`}
-                >
-                  {project.status}
-                </span>
-              </div>
-
               {/* Project Image/Icon Area */}
               <div className="relative h-75 overflow-hidden bg-linear-to-br from-white/5 to-white/10 flex items-center justify-center">
                 {project.image.startsWith("/") ? (

@@ -109,7 +109,7 @@ export default function About() {
                   {stack.techs.map((tech, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 rounded-full bg-white/80 text-slate-900 text-xs md:text-sm font-medium"
+                      className="px-3 py-1 rounded-full bg-white/60 text-slate-900 text-xs md:text-sm font-medium"
                     >
                       {tech}
                     </span>
