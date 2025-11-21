@@ -12,6 +12,7 @@ import BottomBar from "@/components/ui/BottomBar";
 import StarOverlay from "@/components/overlay/StarOverlay";
 import { useStateStore } from "@/store/starStore";
 import About from "@/components/ui/About";
+import Career from "@/components/ui/Career";
 import Projects from "@/components/ui/Projects";
 
 export default function Home() {
@@ -73,6 +74,10 @@ export default function Home() {
 
         <section className="z-60 relative flex items-center justify-center">
           <About />
+        </section>
+
+        <section className="z-60 relative flex items-center justify-center">
+          <Career />
         </section>
 
         <section className="z-60 relative flex items-center justify-center">

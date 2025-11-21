@@ -1,7 +1,35 @@
 "use client";
 
 import React from "react";
+import * as THREE from "three";
 import Image from "next/image";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+
+function BookModel() {
+  const { scene } = useGLTF("/models/books.glb");
+
+  // 간단한 단색 머티리얼 강제 적용 (텍스처가 없을 때 대비)
+  React.useEffect(() => {
+    scene.traverse((obj) => {
+      const mesh = obj as THREE.Mesh;
+      if (mesh.isMesh) {
+        mesh.material = new THREE.MeshStandardMaterial({
+          color: "#CF7EFC",
+          metalness: 0.1,
+          roughness: 0.7,
+        });
+      }
+    });
+  }, [scene]);
+
+  return (
+    <group rotation={[0, Math.PI / 2, 0]}>
+      {/* Y축 기준으로 90도 회전해서 옆모습을 보이도록 */}
+      <primitive object={scene} scale={70} />
+    </group>
+  );
+}
 
 export default function Projects() {
   const projects = [
@@ -51,13 +79,22 @@ export default function Projects() {
   return (
     <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-50">
       {/* Header */}
-      <div className="text-left max-w-6xl w-full mb-12">
-        <h1 className="text-6xl font-black text-gray-200 mb-4 tracking-tight">
-          PROJECTS
-        </h1>
-        <p className="text-xl text-gray-200/80 font-medium max-w-2xl leading-relaxed">
-          제가 진행했던 프로젝트들을 모아봤어요.
-        </p>
+      <div className="relative text-left max-w-6xl w-full mb-12 flex items-start justify-between gap-8">
+        <div>
+          <h1 className="text-6xl font-black text-gray-200 mb-4 tracking-tight">
+            PROJECTS
+          </h1>
+          <p className="text-xl text-gray-200/80 font-medium max-w-2xl leading-relaxed">
+            제가 진행했던 프로젝트들을 모아봤어요.
+          </p>
+        </div>
+        <div className="pointer-events-none absolute top-[-45%] right-[-6%] w-[200px] h-[200px] opacity-80">
+          <Canvas camera={{ position: [100, 0, 6], fov: 45 }}>
+            <ambientLight intensity={1.2} />
+            <directionalLight position={[-12, -5, 12]} intensity={2} />
+            <BookModel />
+          </Canvas>
+        </div>
       </div>
 
       {/* Projects Grid */}
@@ -137,22 +174,6 @@ export default function Projects() {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Call to Action */}
-      <div className="mt-12 text-center">
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 max-w-2xl">
-          <h3 className="text-2xl font-bold text-white mb-4">
-            새로운 프로젝트를 함께 만들어보세요
-          </h3>
-          <p className="text-white/80 mb-6 leading-relaxed">
-            혁신적인 아이디어와 기술적 도전을 통해 의미 있는 결과물을
-            만들어갑니다.
-          </p>
-          <button className="px-8 py-4 bg-white/20 hover:bg-white/30 border border-white/30 rounded-2xl text-white font-semibold transition-all duration-300 transform hover:scale-105">
-            협업 문의하기
-          </button>
         </div>
       </div>
     </div>
