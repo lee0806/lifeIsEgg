@@ -65,13 +65,13 @@ export default function StarScene({ starVisibility }: StarSceneProps) {
               activeStar={activeStar}
             />
             <MenuStar
-              id="projects"
+              id="career"
               position={constellationPoints[1]}
               starVisibility={starVisibility}
               activeStar={activeStar}
             />
             <MenuStar
-              id="skills"
+              id="projects"
               position={constellationPoints[2]}
               starVisibility={starVisibility}
               activeStar={activeStar}

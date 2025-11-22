@@ -1,5 +1,5 @@
 // 별에 대한 ID 타입
-export type StarId = "about" | "projects" | "skills" | "contact";
+export type StarId = "about" | "career" | "projects" | "contact";
 
 // 별에 대한 상태 타입
 export interface StarState {

@@ -29,8 +29,8 @@ body {
 }
 
 .paper-dark-bg {
-  background-color: #0e0e0e;
-  background-image: url("/textures/paper-dark.png");
+  background-color: #1a1a1a;
+
   background-repeat: repeat;
   background-size: auto;
 }
@@ -56,11 +56,12 @@ body {
     transform: translateY(0);
   }
 }
-
+/* 화면이 서서히 나타나는 애니메이션 */
 .animate-fadein-slow {
   animation: fadein-slow 1.2s ease-out forwards;
 }
 
+/* 화면이 서서히 나타나는 애니메이션 */
 .animate-fadein-slower {
   animation: fadein-slower 1.8s ease-out forwards;
 }
