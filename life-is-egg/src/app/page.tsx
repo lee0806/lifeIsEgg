@@ -14,6 +14,7 @@ import { useStateStore } from "@/store/starStore";
 import About from "@/components/ui/About";
 import Career from "@/components/ui/Career";
 import Projects from "@/components/ui/Projects";
+import Footer from "@/components/ui/Footer";
 
 export default function Home() {
   const [scrollY, setScrollY] = useState(0);
@@ -82,6 +83,10 @@ export default function Home() {
 
         <section className="z-60 relative flex items-center justify-center">
           <Projects />
+        </section>
+
+        <section className="z-60 relative flex items-center justify-center">
+          <Footer />
         </section>
       </main>
     </>

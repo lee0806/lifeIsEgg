@@ -57,7 +57,7 @@ export default function Career() {
       {/* 섹션 헤더 */}
       <header className="text-left space-y-6 w-full max-w-6xl mx-auto">
         <h2 className="text-6xl font-black text-gray-200 mb-4 tracking-tight">
-          걸어온 발자국과 성장 기록
+          TRACK
         </h2>
         <p className="text-xl text-gray-200/80 font-medium max-w-2xl leading-relaxed">
           저의 성장 과정을 담아 봤어요.

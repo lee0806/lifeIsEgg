@@ -46,7 +46,7 @@ export default function Projects() {
         "AI",
         "YOLOv8",
       ],
-      liveUrl: "#",
+      liveUrl: "/helios",
       githubUrl: "https://github.com/Helios-CCTV/Helios-web",
     },
     {
