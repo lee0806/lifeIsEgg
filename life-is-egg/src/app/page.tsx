@@ -9,11 +9,11 @@ import Desert from "@/components/3d/Desert";
 import Title from "@/components/ui/Title";
 import GoToGitHub from "@/components/ui/GoToGitHub";
 import BottomBar from "@/components/ui/BottomBar";
-import StarOverlay from "@/components/overlay/StarOverlay";
 import { useStateStore } from "@/store/starStore";
 import About from "@/components/ui/About";
 import Career from "@/components/ui/Career";
 import Projects from "@/components/ui/Projects";
+import Contact from "@/components/ui/Contact";
 import Footer from "@/components/ui/Footer";
 
 export default function Home() {
@@ -69,20 +69,34 @@ export default function Home() {
           <BottomBar fadeProgress={fadeProgress} />
         </section>
 
-        <section className="relative h-screen inset-0 z-60 flex items-center justify-center">
-          {activeStar && <StarOverlay />}
-        </section>
+        <section className="h-screen"></section>
 
-        <section className="z-60 relative flex items-center justify-center">
+        <section
+          id="about-section"
+          className="z-60 relative flex items-center justify-center"
+        >
           <About />
         </section>
 
-        <section className="z-60 relative flex items-center justify-center">
+        <section
+          id="career-section"
+          className="z-60 relative flex items-center justify-center"
+        >
           <Career />
         </section>
 
-        <section className="z-60 relative flex items-center justify-center">
+        <section
+          id="projects-section"
+          className="z-60 relative flex items-center justify-center"
+        >
           <Projects />
+        </section>
+
+        <section
+          id="contact-section"
+          className="z-60 relative flex items-center justify-center"
+        >
+          <Contact />
         </section>
 
         <section className="z-60 relative flex items-center justify-center">

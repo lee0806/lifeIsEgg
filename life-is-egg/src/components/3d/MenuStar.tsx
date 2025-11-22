@@ -53,16 +53,36 @@ export default function MenuStar({
   const baseOpacity = 0.3 + starVisibility * 0.7;
   const isActive = activeStar === id;
 
+  const STAR_SECTION_MAP: Record<string, string> = {
+    about: "about-section",
+    career: "career-section",
+    projects: "projects-section",
+    contact: "contact-section",
+  };
+
   return (
     <mesh
       ref={meshRef}
       position={position}
       geometry={starGeometry}
       onClick={() => {
-        console.log("star id :", id);
-        // zustand 내부 상태가 실제로 바뀌었는지 확인
-        console.log("store activeStar :", useStateStore.getState().activeStar);
+        // 1) 별 활성화 (하이라이트 유지)
         setActiveStar(id);
+        console.log(id);
+
+        // 2) 대응되는 섹션 id 찾기
+        const targetSectionId = STAR_SECTION_MAP[id];
+
+        if (targetSectionId) {
+          const el = document.getElementById(targetSectionId);
+          console.log(targetSectionId);
+          if (el) {
+            el.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        }
       }}
       onPointerOver={(e) => {
         e.stopPropagation();

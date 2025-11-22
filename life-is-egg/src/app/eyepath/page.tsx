@@ -51,17 +51,14 @@ export default function EyePath() {
             이동 방향을 안내하는 스마트 보행 보조 시스템입니다.
           </p>
           <p className="text-lg md:text-xl leading-relaxed text-gray-200">
-            React-Native를 활용하여 시각 장애인이 
-          </p>
-          <p className="text-lg md:text-xl leading-relaxed text-gray-200">
-            완성도 높은 서비스를 위해 API 명세서를 기반으로 Backend팀과 소통하며
-            설계한 데이터 구조에 맞게 프로젝트를 구성했습니다. 모든 과정은
-            문서화하여 팀 내의 협업 효율성을 높였습니다.
-          </p>
-          <p className="text-lg md:text-xl leading-relaxed text-gray-200">
-            일반 사용자와 도로 관리자가 모두 사용할 수 있는 서비스로 일반
-            사용자는 도로 상황에 대한 신고, 위험 도로 인지를 가능하게 하고
-            관리자는 효율적인 도로 관리 체계를 이룰 수 있습니다.
+            React-Native를 활용하여 시각 장애인이 사용할 수 있는 직관적인 모바일
+            인터페이스를 설계하고 구현했습니다. 큰 글자와 대비되는 색상을
+            적용했으며 화면을 보지 않고도 상황을 인지할 수 있도록 UI를
+            설계했습니다. 또한 YOLO 기반의 객체 인식 모델과 연동하여 보행 중
+            감지된 장애물 정보를 서버로부터 실시간으로 수신하고 이를 사용자에게
+            안내하는 기능을 구현했습니다. 이를 통해 시각장애인이 보행 중 발생할
+            수 있는 위험 요소를 인지하고 이동의 안정성과 독립성을 높일 수
+            있었습니다.
           </p>
         </section>
 
