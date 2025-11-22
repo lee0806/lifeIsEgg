@@ -41,9 +41,9 @@ function RocketModel() {
 
 export default function About() {
   return (
-    <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-50">
+    <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-30">
       {/* 3D Moon on the right side */}
-      <div className="pointer-events-none absolute top-45 right-[5%] w-[150px] h-[150px] opacity-80">
+      <div className="pointer-events-none absolute top-[7.5%] right-[5%] w-[150px] h-[150px] opacity-80">
         <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[2, 3, 4]} intensity={1.1} />

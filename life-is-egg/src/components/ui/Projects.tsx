@@ -77,7 +77,7 @@ export default function Projects() {
   ];
 
   return (
-    <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-50">
+    <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-30">
       {/* Header */}
       <div className="relative text-left max-w-6xl w-full mb-12 flex items-start justify-between gap-8">
         <div>
@@ -136,8 +136,6 @@ export default function Projects() {
                 <div className="flex items-center justify-between">
                   <a
                     href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors text-sm font-medium"
                   >
                     <span>바로가기</span>

@@ -53,7 +53,7 @@ const typeBadge: Record<string, string> = {
 
 export default function Career() {
   return (
-    <section className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-50">
+    <section className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-30">
       {/* 섹션 헤더 */}
       <header className="text-left space-y-6 w-full max-w-6xl mx-auto">
         <h2 className="text-6xl font-black text-gray-200 mb-4 tracking-tight">
