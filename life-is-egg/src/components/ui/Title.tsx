@@ -15,7 +15,7 @@ export default function Title({ fadeProgress }: TitleProps) {
           <h1 className="text-8xl md:text-12xl font-[800] tracking-tight text-white drop-shadow-[0_0_15px_rgba(255,255,255,0.3)] animate-fadein-slow">
             Starlit
           </h1>
-          <h1 className="text-7xl md:text-8xl font-[900] tracking-widest text-white/90 mt-2 animate-fadein-slower">
+          <h1 className="text-7xl md:text-8xl font-[900] tracking-tight text-white/90 mt-2 animate-fadein-slower">
             Portfolio
           </h1>
         </div>

@@ -41,10 +41,10 @@ function RocketModel() {
 
 export default function About() {
   return (
-    <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24">
+    <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-30">
       {/* 3D Moon on the right side */}
-      <div className="pointer-events-none absolute top-29 left-120 -translate-y-1/2 w-[100px] h-[100px] opacity-60">
-        <Canvas camera={{ position: [0, 0, 3.2], fov: 45 }}>
+      <div className="pointer-events-none absolute top-[7.5%] right-[5%] w-[150px] h-[150px] opacity-80">
+        <Canvas camera={{ position: [0, 0, 6], fov: 45 }}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[2, 3, 4]} intensity={1.1} />
           <Suspense fallback={null}>
@@ -53,15 +53,18 @@ export default function About() {
         </Canvas>
       </div>
       <section className="text-left space-y-6 w-full max-w-6xl mx-auto">
-        <div className="text-6xl font-[800] leading-tight text-gray-400">
+        <h1 className="text-6xl font-black text-gray-200 mb-4 tracking-tight">
           ABOUT ME
-        </div>
+        </h1>
+        <p className="text-xl text-gray-200/80 font-medium max-w-2xl leading-relaxed">
+          저의 모습들을 담아봤어요.
+        </p>
       </section>
 
       <div className="w-full max-w-6xl mx-auto space-y-10 mt-20">
         {/* 상단 소개 영역 */}
         <section className="space-y-4 text-left">
-          <p className="text-sm font-[500] text-gray-400">
+          <p className="text-m font-[500] text-gray-400">
             작은 시작, 의미 있는 연결
           </p>
           <p className="text-lg md:text-xl leading-relaxed text-gray-200">
@@ -90,7 +93,7 @@ export default function About() {
 
         {/* 기술 카드 섹션 */}
         <section className="space-y-6">
-          <p className="text-sm text-gray-400">나의 기술들</p>
+          <p className="text-m text-gray-400">나의 기술들</p>
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {techStack.map((stack) => (
               <div

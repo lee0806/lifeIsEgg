@@ -1,7 +1,35 @@
 "use client";
 
 import React from "react";
+import * as THREE from "three";
 import Image from "next/image";
+import { Canvas } from "@react-three/fiber";
+import { useGLTF } from "@react-three/drei";
+
+function BookModel() {
+  const { scene } = useGLTF("/models/books.glb");
+
+  // 간단한 단색 머티리얼 강제 적용 (텍스처가 없을 때 대비)
+  React.useEffect(() => {
+    scene.traverse((obj) => {
+      const mesh = obj as THREE.Mesh;
+      if (mesh.isMesh) {
+        mesh.material = new THREE.MeshStandardMaterial({
+          color: "#CF7EFC",
+          metalness: 0.1,
+          roughness: 0.7,
+        });
+      }
+    });
+  }, [scene]);
+
+  return (
+    <group rotation={[0, Math.PI / 2, 0]}>
+      {/* Y축 기준으로 90도 회전해서 옆모습을 보이도록 */}
+      <primitive object={scene} scale={70} />
+    </group>
+  );
+}
 
 export default function Projects() {
   const projects = [
@@ -9,64 +37,64 @@ export default function Projects() {
       id: 1,
       title: "Helios",
       description: "CCTV 영상 데이터를 이용한 실시간 도로 노후화 탐지 시스템",
-      tech: ["Next.js", "Three.js", "TypeScript", "TailwindCSS"],
-
-      liveUrl: "#",
-      githubUrl: "#",
-      image: "/project/Helios.png",
-
-      color: "from-purple-500/20 to-blue-500/20",
+      tech: [
+        "React",
+        "TypeScript",
+        "TailwindCSS",
+        "Zustand",
+        "ReactQuery",
+        "AI",
+        "YOLOv8",
+      ],
+      liveUrl: "/helios",
+      githubUrl: "https://github.com/Helios-CCTV/Helios-web",
     },
     {
       id: 2,
       title: "HotSpot",
-      description: "데이터 시각화와 실시간 인터랙션이 결합된 대시보드 플랫폼",
-      tech: ["React", "D3.js", "WebSocket", "Node.js"],
-
-      liveUrl: "#",
-      githubUrl: "#",
-      image: "/project/Helios.png",
-
-      color: "from-green-500/20 to-teal-500/20",
+      description:
+        "유동인구 데이터 기반 창업 입지 추천 및 손익 분석 플랫폼 (배포 레포)",
+      tech: ["React", "JavaScript", "CSS", "ReactQuery", "XGBoost"],
+      liveUrl: "/hotspot",
+      githubUrl: "https://github.com/lee0806/HotSpotDistribution",
     },
     {
       id: 3,
-      title: "Motion Design System",
-      description:
-        "재사용 가능한 애니메이션 컴포넌트 라이브러리와 디자인 시스템",
-      tech: ["React", "Framer Motion", "Storybook", "CSS-in-JS"],
-
-      liveUrl: "#",
-      githubUrl: "#",
-      image: "/project/Helios.png",
-
-      color: "from-pink-500/20 to-orange-500/20",
+      title: "눈길",
+      description: "시각 장애인을 위한 실시간 상황인지 내비게이션 서비스 설계",
+      tech: ["React-Native", "JavaScript", "CSS", "YOLOv8", "FastAPI"],
+      liveUrl: "/eyepath",
+      githubUrl: "https://github.com/Eye-Path/react-native-eyepath",
     },
     {
       id: 4,
-      title: "AI-Powered Chat Interface",
-      description:
-        "자연어 처리 기반 실시간 채팅 인터페이스와 스마트 응답 시스템",
-      tech: ["Next.js", "OpenAI API", "Socket.io", "Prisma"],
-
+      title: "Portfolio",
+      description: "개인 포트폴리오 웹사이트",
+      tech: ["Next.js", "TypeScript", "Vercel", "Zustand"],
       liveUrl: "#",
       githubUrl: "#",
-      image: "/project/Helios.png",
-
-      color: "from-indigo-500/20 to-purple-500/20",
     },
   ];
 
   return (
-    <div className="relative z-60 w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl p-8">
+    <div className="relative z-[60] w-full h-full flex flex-col items-center justify-center bg-white/5 backdrop-blur-xl px-6 py-12 md:px-12 lg:px-24 pt-30">
       {/* Header */}
-      <div className="text-center mb-12">
-        <h1 className="text-6xl font-black text-white mb-4 tracking-tight">
-          PROJECTS
-        </h1>
-        <p className="text-xl text-white/80 font-medium max-w-2xl leading-relaxed">
-          기술과 창의성의 경계를 넘나드는 프로젝트들을 소개합니다.
-        </p>
+      <div className="relative text-left max-w-6xl w-full mb-12 flex items-start justify-between gap-8">
+        <div>
+          <h1 className="text-6xl font-black text-gray-200 mb-4 tracking-tight">
+            PROJECTS
+          </h1>
+          <p className="text-xl text-gray-200/80 font-medium max-w-2xl leading-relaxed">
+            제가 진행했던 프로젝트들을 모아봤어요.
+          </p>
+        </div>
+        <div className="pointer-events-none absolute top-[-45%] right-[-6%] w-[200px] h-[200px] opacity-80">
+          <Canvas camera={{ position: [100, 0, 6], fov: 45 }}>
+            <ambientLight intensity={1.2} />
+            <directionalLight position={[-12, -5, 12]} intensity={2} />
+            <BookModel />
+          </Canvas>
+        </div>
       </div>
 
       {/* Projects Grid */}
@@ -75,27 +103,10 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group relative overflow-hidden cursor-pointer"
+              className="group relative overflow-hidden"
             >
-              {/* Project Image/Icon Area */}
-              <div className="relative h-75 overflow-hidden bg-linear-to-br from-white/5 to-white/10 flex items-center justify-center">
-                {project.image.startsWith("/") ? (
-                  <>
-                    <Image
-                      src={project.image}
-                      alt={project.title}
-                      fill
-                      className="object-cover"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 100vw, 600px"
-                    />
-                  </>
-                ) : (
-                  <div className="text-6xl">{project.image}</div>
-                )}
-              </div>
-
               {/* Project Content */}
-              <div className="p-6">
+              <div className="py-6 px-2">
                 <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors">
                   {project.title}
                 </h3>
@@ -106,7 +117,7 @@ export default function Projects() {
 
                 {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2 mb-6">
-                  {project.tech.slice(0, 3).map((tech, index) => (
+                  {project.tech.slice(0, 5).map((tech, index) => (
                     <span
                       key={index}
                       className="px-2 py-1 bg-white/10 border border-white/20 rounded-lg text-white/80 text-xs font-medium"
@@ -114,7 +125,7 @@ export default function Projects() {
                       {tech}
                     </span>
                   ))}
-                  {project.tech.length > 3 && (
+                  {project.tech.length > 5 && (
                     <span className="px-2 py-1 bg-white/10 border border-white/20 rounded-lg text-white/60 text-xs">
                       +{project.tech.length - 3}
                     </span>
@@ -125,8 +136,6 @@ export default function Projects() {
                 <div className="flex items-center justify-between">
                   <a
                     href={project.liveUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
                     className="flex items-center space-x-2 text-white/80 hover:text-white transition-colors text-sm font-medium"
                   >
                     <span>바로가기</span>
@@ -163,22 +172,6 @@ export default function Projects() {
               </div>
             </div>
           ))}
-        </div>
-      </div>
-
-      {/* Call to Action */}
-      <div className="mt-12 text-center">
-        <div className="bg-white/10 backdrop-blur-md border border-white/20 rounded-3xl p-8 max-w-2xl">
-          <h3 className="text-2xl font-bold text-white mb-4">
-            새로운 프로젝트를 함께 만들어보세요
-          </h3>
-          <p className="text-white/80 mb-6 leading-relaxed">
-            혁신적인 아이디어와 기술적 도전을 통해 의미 있는 결과물을
-            만들어갑니다.
-          </p>
-          <button className="px-8 py-4 bg-white/20 hover:bg-white/30 border border-white/30 rounded-2xl text-white font-semibold transition-all duration-300 transform hover:scale-105">
-            협업 문의하기
-          </button>
         </div>
       </div>
     </div>
