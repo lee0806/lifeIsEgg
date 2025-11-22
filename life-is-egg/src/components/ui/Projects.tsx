@@ -103,7 +103,7 @@ export default function Projects() {
           {projects.map((project) => (
             <div
               key={project.id}
-              className="group relative overflow-hidden cursor-pointer"
+              className="group relative overflow-hidden"
             >
               {/* Project Content */}
               <div className="py-6 px-2">

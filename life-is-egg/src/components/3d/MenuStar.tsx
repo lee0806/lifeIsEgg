@@ -1,7 +1,8 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import { useRef, useMemo, useState } from "react";
 import { useFrame } from "@react-three/fiber";
+import { Html } from "@react-three/drei";
 import * as THREE from "three";
 
 import { MenuStarProps } from "@/types/index";
@@ -14,7 +15,9 @@ export default function MenuStar({
   starVisibility,
 }: MenuStarProps) {
   // 별 메쉬 참조
-  const meshRef = useRef<THREE.Mesh>(null!);
+  const groupRef = useRef<THREE.Group>(null!);
+  const starMeshRef = useRef<THREE.Mesh>(null!);
+  const [hovered, setHovered] = useState(false);
 
   const activeStar = useStateStore((state) => state.activeStar);
   const setActiveStar = useStateStore((state) => state.setActiveStar);
@@ -31,7 +34,7 @@ export default function MenuStar({
 
   // 매 프레임마다 별의 애니메이션 업데이트
   useFrame(({ clock }) => {
-    if (!meshRef.current) return;
+    if (!starMeshRef.current) return;
 
     const t = clock.getElapsedTime(); // 경과 시간
 
@@ -43,10 +46,10 @@ export default function MenuStar({
     const extra = isActive ? 0.15 : 0;
 
     const s = 0.5 + extra; // 기본 크기
-    meshRef.current.scale.setScalar(s * pulse);
+    starMeshRef.current.scale.setScalar(s * pulse);
 
     // 살짝 회전
-    meshRef.current.rotation.z = t * 0.4;
+    starMeshRef.current.rotation.z = t * 0.4;
   });
 
   // starVisibility에 따라 서서히 나타나게
@@ -60,45 +63,64 @@ export default function MenuStar({
     contact: "contact-section",
   };
 
+  const STAR_LABEL_MAP: Record<string, string> = {
+    about: "ABOUT",
+    career: "TRACK",
+    projects: "PROJECTS",
+    contact: "CONTACT",
+  };
+
+  const label = STAR_LABEL_MAP[id] ?? "섹션으로 이동";
+
   return (
-    <mesh
-      ref={meshRef}
-      position={position}
-      geometry={starGeometry}
-      onClick={() => {
-        // 1) 별 활성화 (하이라이트 유지)
-        setActiveStar(id);
-        console.log(id);
+    <group ref={groupRef} position={position}>
+      <mesh
+        ref={starMeshRef}
+        geometry={starGeometry}
+        onClick={() => {
+          // 1) 별 활성화 (하이라이트 유지)
+          setActiveStar(id);
+          console.log(id);
 
-        // 2) 대응되는 섹션 id 찾기
-        const targetSectionId = STAR_SECTION_MAP[id];
+          // 2) 대응되는 섹션 id 찾기
+          const targetSectionId = STAR_SECTION_MAP[id];
 
-        if (targetSectionId) {
-          const el = document.getElementById(targetSectionId);
-          console.log(targetSectionId);
-          if (el) {
-            el.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
+          if (targetSectionId) {
+            const el = document.getElementById(targetSectionId);
+            console.log(targetSectionId);
+            if (el) {
+              el.scrollIntoView({
+                behavior: "smooth",
+                block: "start",
+              });
+            }
           }
-        }
-      }}
-      onPointerOver={(e) => {
-        e.stopPropagation();
-        document.body.style.cursor = "pointer";
-      }}
-      onPointerOut={(e) => {
-        e.stopPropagation();
-        document.body.style.cursor = "default";
-      }}
-    >
-      <meshBasicMaterial
-        color={isActive ? "#FFE066" : "#FACC15"}
-        transparent
-        opacity={baseOpacity}
-      />
-    </mesh>
+        }}
+        onPointerOver={(e) => {
+          e.stopPropagation();
+          setHovered(true);
+          document.body.style.cursor = "pointer";
+        }}
+        onPointerOut={(e) => {
+          e.stopPropagation();
+          setHovered(false);
+          document.body.style.cursor = "default";
+        }}
+      >
+        <meshBasicMaterial
+          color={isActive ? "#FFE066" : "#FACC15"}
+          transparent
+          opacity={baseOpacity}
+        />
+      </mesh>
+      {hovered && (
+        <Html position={[0, 0.3, 0]} center>
+          <div className="px-5 py-2 rounded-xl bg-purple-300/40 border border-white/15 text-[10px] md:text-xs text-gray-200 shadow-[0_8px_20px_rgba(0,0,0,0.6)] animate-fadein-slow">
+            {label}
+          </div>
+        </Html>
+      )}
+    </group>
   );
 }
 
