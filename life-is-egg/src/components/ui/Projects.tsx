@@ -55,16 +55,16 @@ export default function Projects() {
       description:
         "유동인구 데이터 기반 창업 입지 추천 및 손익 분석 플랫폼 (배포 레포)",
       tech: ["React", "JavaScript", "CSS", "ReactQuery", "XGBoost"],
-      liveUrl: "#",
+      liveUrl: "/hotspot",
       githubUrl: "https://github.com/lee0806/HotSpotDistribution",
     },
     {
       id: 3,
-      title: "doRan",
-      description: "자신만의 따뜻한 경험과 이야기를 공유하는 커뮤니티 (진행중)",
-      tech: ["Next.js", "TypeScript", "TailwindCSS", "Node.js"],
-      liveUrl: "#",
-      githubUrl: "https://github.com/lee0806/doRan",
+      title: "눈길",
+      description: "시각 장애인을 위한 실시간 상황인지 내비게이션 서비스 설계",
+      tech: ["React-Native", "JavaScript", "CSS", "YOLOv8", "FastAPI"],
+      liveUrl: "/eyepath",
+      githubUrl: "https://github.com/Eye-Path/react-native-eyepath",
     },
     {
       id: 4,
