@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { StarId } from "@/types";
 
 import StarScene from "@/components/3d/StarScene";
-import Moon from "@/components/3d/Moon";
+import Moon from "@/components/3d/moon";
 import Desert from "@/components/3d/Desert";
 import Title from "@/components/ui/Title";
 import GoToGitHub from "@/components/ui/GoToGitHub";
