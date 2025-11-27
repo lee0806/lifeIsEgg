@@ -70,9 +70,9 @@ export default function Projects() {
       id: 4,
       title: "Portfolio",
       description: "개인 포트폴리오 웹사이트",
-      tech: ["Next.js", "TypeScript", "Vercel", "Zustand"],
-      liveUrl: "#",
-      githubUrl: "#",
+      tech: ["Next.js", "Three.js", "Cloudflare", "Server", "nginx", "Jenkins"],
+      liveUrl: "/",
+      githubUrl: "https://github.com/lee0806/lifeIsEgg",
     },
   ];
 
@@ -88,7 +88,7 @@ export default function Projects() {
             제가 진행했던 프로젝트들을 모아봤어요.
           </p>
         </div>
-        <div className="pointer-events-none absolute top-[-45%] right-[-6%] w-[200px] h-[200px] opacity-80">
+        <div className="pointer-events-none absolute top-[-45%] right-[-6%] w-[200px] h-[200px] opacity-80 hidden md:block">
           <Canvas camera={{ position: [100, 0, 6], fov: 45 }}>
             <ambientLight intensity={1.2} />
             <directionalLight position={[-12, -5, 12]} intensity={2} />
@@ -101,10 +101,7 @@ export default function Projects() {
       <div className="max-w-6xl w-full">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12 mb-4">
           {projects.map((project) => (
-            <div
-              key={project.id}
-              className="group relative overflow-hidden"
-            >
+            <div key={project.id} className="group relative overflow-hidden">
               {/* Project Content */}
               <div className="py-6 px-2">
                 <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-white/90 transition-colors">
