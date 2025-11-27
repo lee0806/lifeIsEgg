@@ -69,7 +69,7 @@ export default function Home() {
           <BottomBar fadeProgress={fadeProgress} />
         </section>
 
-        <section className="h-screen"></section>
+        <section className="h-screen hidden md:block"></section>
 
         <section
           id="about-section"
