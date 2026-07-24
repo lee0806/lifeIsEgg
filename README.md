@@ -1,70 +1,98 @@
-# Starlit Portfolio
+# vinext-starter
 
-**Starlit Portfolio**는 프론트엔드 개발자로서의 경험과 프로젝트를 표현하는 개인 포트폴리오 웹사이트입니다.  
-우주/별자리 컨셉 기반으로, 메인 화면에서 별을 클릭하거나 스크롤을 통해 각 섹션(About, Projects, Career, Contact 등)으로 자연스럽게 이동할 수 있도록 설계 했습니다.
+A clean full-stack starter running on
+[vinext](https://github.com/cloudflare/vinext), with optional Cloudflare D1 and
+Drizzle support.
 
----
+## Prerequisites
 
-## 🔗 배포 주소
+- Node.js `>=22.13.0`
 
-- https://leeseh0806.com
+## Quick Start
 
----
+```bash
+npm install
+npm run dev
+npm run build
+```
 
-## 🌌 주요 컨셉 및 기능
+This starter does not use `wrangler.jsonc`.
 
-### 1. Intro
+## Included Shape
 
-### 2. About Me
+- edit site code under `app/`
+- `.openai/hosting.json` declares optional Sites D1 and R2 bindings
+- `vite.config.ts` simulates declared bindings for local development
+- `db/schema.ts` starts intentionally empty
+- `examples/d1/` contains an optional D1 example surface
+- `drizzle.config.ts` supports local migration generation when needed
 
-### 3. Projects 
+## Workspace Auth Headers
 
-1. **HELIOS – CCTV 영상 기반 실시간 도로 노후화 탐지 시스템**
-   - 국토부 교통 CCTV 영상에서 도로 파손(균열, 포트홀 등)을 탐지하는 시스템.
-   - YOLO 기반의 객체 탐지 모델과 연동된 프론트엔드 화면 구성.
-   - 실시간/시나리오 기반 모니터링 화면, 파손 결과 시각화, 알림 흐름 등을 React로 구현.
+OpenAI workspace sites can read the current user's email from
+`oai-authenticated-user-email`.
 
-2. **HotSpot – 유동인구 데이터 기반 창업 입지 추천 및 손익 분석 플랫폼**
-   - 시간대·연령대·성별별 유동인구, 임대료, 상권 포화도 데이터를 기반으로
-     예비 창업자가 입지를 비교할 수 있는 웹 서비스.
-   - React + React Query + Axios로 외부 API를 연동하고,
-     차트/지도 기반 시각화를 통해 정보를 제공.
-   - “입지 비교”, “손익분기점(BEP) 시뮬레이션” 등 데이터 기반 의사결정을 돕는 기능 포함.
+SIWC-authenticated workspace sites may also receive
+`oai-authenticated-user-full-name` when the user's SIWC profile has a non-empty
+`name` claim. The full-name value is percent-encoded UTF-8 and is accompanied by
+`oai-authenticated-user-full-name-encoding: percent-encoded-utf-8`.
 
-3. **EyePath(눈길) – 시각장애인을 위한 보행 보조 내비게이션**
-   - 시각장애인의 안전한 보행을 목표로 한 모바일 서비스 개념.
-   - YOLO 기반 객체 인식 서버와 통신하여
-     보행 위험 요소(장애물, 공사 구간 등)를 실시간 탐지하고,
-     음성 및 진동 피드백으로 안내하는 흐름을 설계.
-   - React Native 기반 UI/UX 구조를 참고하여 포트폴리오 페이지에서 서비스 흐름 및 기여 내용을 소개.
+Treat the full name as optional and fall back to email when it is absent:
 
+```tsx
+import { headers } from "next/headers";
 
-### 4. Career / Timeline 섹션
+export default async function Home() {
+  const requestHeaders = await headers();
+  const email = requestHeaders.get("oai-authenticated-user-email");
+  const encodedFullName = requestHeaders.get("oai-authenticated-user-full-name");
+  const fullName =
+    encodedFullName &&
+    requestHeaders.get("oai-authenticated-user-full-name-encoding") ===
+      "percent-encoded-utf-8"
+      ? decodeURIComponent(encodedFullName)
+      : null;
 
-### 5. Contact 섹션
+  const displayName = fullName ?? email;
+  // ...
+}
+```
 
----
+## Optional Dispatch-Owned ChatGPT Sign-In
 
-## 🧱 기술 스택
+Import the ready-to-use helpers from `app/chatgpt-auth.ts` when the site needs
+optional or required ChatGPT sign-in:
 
-### Frontend
+- Use `getChatGPTUser()` for optional signed-in UI.
+- Use `requireChatGPTUser(returnTo)` for server-rendered pages that should send
+  anonymous visitors through Sign in with ChatGPT.
+- Use `chatGPTSignInPath(returnTo)` and `chatGPTSignOutPath(returnTo)` for
+  browser links or actions.
+- Pass a same-origin relative `returnTo` path for the destination after sign-in
+  or sign-out. The helper validates and safely encodes it.
+- Mark protected pages with `export const dynamic = "force-dynamic"` because
+  they depend on per-request identity headers.
 
-- **Framework**: Next.js (App Router)
-- **Language**: TypeScript
-- **Styling**: Tailwind CSS
-- **3D / Graphics**:
-  - Three.js
-  - @react-three/fiber
-  - @react-three/drei
-- **State Management**:
-  - Zustand
+Dispatch owns `/signin-with-chatgpt`, `/signout-with-chatgpt`, `/callback`, the
+OAuth cookies, and identity header injection. Do not implement app routes for
+those reserved paths. Routes that do not import and call the helper remain
+anonymous-compatible.
 
-### DevOps / Infra
+SIWC establishes identity only; it does not prove workspace membership. Use the
+Sites hosting platform's access policy controls for workspace-wide restrictions,
+or enforce explicit server-side membership or allowlist checks.
 
-- **Server**: macOS (Mac mini)
-- **Process Manager**: PM2 
-- **Reverse Proxy**: Nginx
-- **CI/CD**: Jenkins
-- **Domain / DNS / HTTPS**:
-  - Cloudflare (DNS, DDNS)
-  - Let’s Encrypt + Certbot (SSL 인증서, HTTPS)
+Use SIWC for account pages, user-specific dashboards, saved records, and write
+actions tied to the current ChatGPT user. Leave public content anonymous.
+
+## Useful Commands
+
+- `npm run dev`: start local development
+- `npm run build`: verify the vinext build output
+- `npm test`: build the starter and verify its rendered loading skeleton
+- `npm run db:generate`: generate Drizzle migrations after schema changes
+
+## Learn More
+
+- [vinext Documentation](https://github.com/cloudflare/vinext)
+- [Drizzle D1 Guide](https://orm.drizzle.team/docs/get-started/d1-new)
