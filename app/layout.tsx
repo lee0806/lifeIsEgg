@@ -1,25 +1,50 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Noto_Sans_KR } from "next/font/google";
+import { headers } from "next/headers";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const notoSansKr = Noto_Sans_KR({
+  variable: "--font-noto-sans-kr",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+export async function generateMetadata(): Promise<Metadata> {
+  const requestHeaders = await headers();
+  const host = requestHeaders.get("host") ?? "localhost:3000";
+  const protocol =
+    requestHeaders.get("x-forwarded-proto") ??
+    (host.startsWith("localhost") ? "http" : "https");
+  const origin = `${protocol}://${host}`;
+  const title = "이세현 | Backend-focused Fullstack Developer";
+  const description =
+    "기술 선택부터 운영 환경까지 책임지는 개발자 이세현의 포트폴리오입니다.";
 
-export const metadata: Metadata = {
-  title: "Starter Project",
-  description: "A clean starting point for building your site.",
-  icons: {
-    icon: "/favicon.svg",
-    shortcut: "/favicon.svg",
-  },
-};
+  return {
+    title,
+    description,
+    openGraph: {
+      title,
+      description,
+      type: "website",
+      locale: "ko_KR",
+      images: [
+        {
+          url: `${origin}/og.png`,
+          width: 1736,
+          height: 907,
+          alt: "기술 선택부터 운영 환경까지 책임지는 개발자 이세현",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [`${origin}/og.png`],
+    },
+  };
+}
 
 export default function RootLayout({
   children,
@@ -27,12 +52,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="ko">
+      <body className={notoSansKr.variable}>{children}</body>
     </html>
   );
 }
