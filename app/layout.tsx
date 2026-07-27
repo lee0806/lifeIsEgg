@@ -16,9 +16,9 @@ export async function generateMetadata(): Promise<Metadata> {
     requestHeaders.get("x-forwarded-proto") ??
     (host.startsWith("localhost") ? "http" : "https");
   const origin = `${protocol}://${host}`;
-  const title = "이세현 | Backend-focused Fullstack Developer";
+  const title = "이세현 | Fullstack Developer";
   const description =
-    "기술 선택부터 운영 환경까지 책임지는 개발자 이세현의 포트폴리오입니다.";
+    "백엔드 API부터 프론트엔드, AI 모델과 배포 환경까지 연결하는 개발자 이세현의 포트폴리오입니다.";
 
   return {
     title,
@@ -33,7 +33,7 @@ export async function generateMetadata(): Promise<Metadata> {
           url: `${origin}/og.png`,
           width: 1736,
           height: 907,
-          alt: "기술 선택부터 운영 환경까지 책임지는 개발자 이세현",
+          alt: "기술을 고를 때 운영 환경까지 함께 보는 개발자 이세현",
         },
       ],
     },

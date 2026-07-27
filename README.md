@@ -1,10 +1,12 @@
 # 이세현 포트폴리오
 
-기술 선택부터 운영 환경까지 책임지는 개발자 이세현의 웹 포트폴리오입니다.
+백엔드 API부터 프론트엔드, AI 모델과 배포 환경까지 연결해 온 개발자 이세현의 웹 포트폴리오입니다.
 
 ## 소개
 
-백엔드 개발을 중심으로 프론트엔드와 인프라까지 직접 연결하며, 기술을 선택한 근거와 그 결과를 기록합니다.
+최종 이력서와 CodeRun·MOG·HELIOS 발표 자료를 토대로 문제, 선택, 결과를 정리했습니다.
+
+이력서는 `public/leeseh-fullstack-resume.pdf`에서 제공합니다.
 
 ## 주요 프로젝트
 
@@ -18,6 +20,7 @@
 - Frontend: React, TypeScript, React Query
 - Database: PostgreSQL, Redis
 - DevOps / Infra: Docker, Jenkins, Nginx
+- AI / ML: Python, YOLOv8, OpenCV, GPT-5
 
 ## 실행
 

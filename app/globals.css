@@ -96,9 +96,9 @@ a:focus-visible {
 }
 
 .hero h1 {
-  max-width: 1040px;
+  max-width: 940px;
   margin: 0;
-  font-size: clamp(56px, 7.2vw, 104px);
+  font-size: clamp(44px, 5.8vw, 76px);
   font-weight: 700;
   letter-spacing: -0.065em;
   line-height: 1.08;
@@ -157,40 +157,6 @@ a:focus-visible {
   border-color: var(--foreground);
   background: var(--foreground);
   color: white;
-}
-
-.evidence-strip {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid var(--line);
-  border-bottom: 1px solid var(--line);
-}
-
-.evidence-strip > div {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  padding: 34px 28px;
-  border-right: 1px solid var(--line);
-}
-
-.evidence-strip > div:first-child {
-  padding-left: 0;
-}
-
-.evidence-strip > div:last-child {
-  border-right: 0;
-}
-
-.evidence-strip strong {
-  color: var(--accent);
-  font-size: 28px;
-  letter-spacing: -0.045em;
-}
-
-.evidence-strip span {
-  color: var(--muted);
-  font-size: 13px;
 }
 
 .work-section,
@@ -275,6 +241,12 @@ a:focus-visible {
   transition: color 160ms ease;
 }
 
+.project-links {
+  display: flex;
+  flex-shrink: 0;
+  gap: 24px;
+}
+
 .repo-link:hover {
   color: var(--accent);
 }
@@ -311,28 +283,129 @@ a:focus-visible {
   color: var(--accent);
 }
 
-.decision-list {
+.project-visual {
+  margin: 0 0 48px;
+}
+
+.project-visual {
+  overflow: hidden;
+}
+
+.project-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: #f1f2f5;
+}
+
+.project-visual figcaption {
+  display: flex;
+  gap: 18px;
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.project-visual figcaption span {
+  flex-shrink: 0;
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.case-list {
+  border-top: 1px solid var(--foreground);
+}
+
+.case-study {
+  border-bottom: 1px solid var(--line);
+}
+
+.case-study summary {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 28px;
+  grid-template-columns: 48px minmax(0, 1fr) auto 28px;
+  gap: 18px;
+  align-items: center;
+  min-height: 82px;
+  cursor: pointer;
+  list-style: none;
 }
 
-.decision {
-  padding-right: 18px;
+.case-study summary::-webkit-details-marker {
+  display: none;
 }
 
-.decision h4 {
-  margin: 0 0 14px;
+.case-study summary:hover strong {
+  color: var(--accent);
+}
+
+.case-number,
+.case-category {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.case-study summary strong {
   font-size: 17px;
-  letter-spacing: -0.03em;
-  line-height: 1.45;
+  letter-spacing: -0.025em;
+  transition: color 160ms ease;
 }
 
-.decision p {
+.case-category {
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  font-weight: 700;
+}
+
+.case-toggle {
+  color: var(--muted);
+  font-size: 22px;
+  text-align: right;
+  transition: transform 180ms ease;
+}
+
+.case-study[open] .case-toggle {
+  transform: rotate(45deg);
+}
+
+.case-content {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  margin: 0 0 34px 48px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--line);
+}
+
+.case-content > div {
+  padding: 24px;
+  background: var(--surface);
+}
+
+.case-content h5 {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 12px;
+  letter-spacing: -0.01em;
+}
+
+.case-content p {
   margin: 0;
   color: var(--muted);
   font-size: 14px;
   line-height: 1.75;
+}
+
+.case-content .retrospective {
+  background: #f2f4f8;
 }
 
 .stack-line {
@@ -541,21 +614,8 @@ a:focus-visible {
     flex-direction: column;
   }
 
-  .evidence-strip,
-  .decision-list,
   .background-section {
     grid-template-columns: 1fr;
-  }
-
-  .evidence-strip > div,
-  .evidence-strip > div:first-child {
-    padding: 24px 0;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .evidence-strip > div:last-child {
-    border-bottom: 0;
   }
 
   .section-heading {
@@ -574,8 +634,8 @@ a:focus-visible {
     grid-template-columns: 48px minmax(0, 1fr);
   }
 
-  .decision-list {
-    gap: 34px;
+  .project-visual {
+    margin-bottom: 40px;
   }
 
   .about-section {
@@ -624,7 +684,7 @@ a:focus-visible {
   }
 
   .hero h1 {
-    font-size: clamp(42px, 13vw, 64px);
+    font-size: clamp(36px, 10.5vw, 50px);
   }
 
   .hero-bottom {
@@ -671,6 +731,40 @@ a:focus-visible {
   .project-meta {
     grid-template-columns: 1fr;
     gap: 18px;
+  }
+
+  .project-visual img {
+    border-radius: 10px;
+  }
+
+  .project-visual figcaption {
+    display: block;
+  }
+
+  .project-visual figcaption span {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .case-study summary {
+    grid-template-columns: 34px minmax(0, 1fr) 24px;
+    gap: 10px;
+    padding-block: 18px;
+  }
+
+  .case-category {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .case-toggle {
+    grid-column: 3;
+    grid-row: 1 / span 2;
+  }
+
+  .case-content {
+    grid-template-columns: 1fr;
+    margin-left: 0;
   }
 
   .stack-line {
