@@ -32,13 +32,24 @@ test("server-renders the portfolio and metadata", async () => {
   assert.match(html, /이세현 \| Fullstack Developer/);
   assert.match(html, /기술을 고를 때/);
   assert.match(html, /CodeRun/);
+  assert.match(
+    html,
+    /소셜 로그인과 자체 회원가입을 통합한 인증 구조 설계 및 구현/,
+  );
+  assert.match(html, /안전한 계정 연동·해제 정책/);
+  assert.doesNotMatch(html, /인증 데이터의 성격에 맞춘 Redis 저장 구조/);
   assert.match(html, /MOG/);
   assert.match(html, /HELIOS/);
   assert.match(html, /SQLD/);
   assert.match(html, /SQL 개발자/);
   assert.match(html, /2026\.03\.27 취득/);
   assert.match(html, /2026\.06\.01 — 2026\.07\.06/);
-  assert.match(html, /mAP@0\.5를 58\.8%에서 92%로/);
+  assert.match(html, /mAP@0\.5를 58\.8% → 92%로/);
+  assert.match(
+    html,
+    /React Query 기반 서버 상태 관리 및 중복 refetch 개선/,
+  );
+  assert.doesNotMatch(html, /대량 이미지 전처리와 학습 시간 단축/);
   assert.doesNotMatch(html, /FE · AI · 팀장 · 기여도 60%/);
   assert.doesNotMatch(html, /GPT-5/);
   assert.match(html, /coderun-architecture\.png/);
