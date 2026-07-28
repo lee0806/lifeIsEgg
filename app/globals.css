@@ -517,8 +517,8 @@ a:focus-visible {
 
 .background-section {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;
   padding-block: 80px 150px;
 }
 

@@ -10,8 +10,6 @@ const projects = [
     role: "BE · 팀장 · Infra · 기여도 40%",
     evidence: "4개 언어 채점 환경",
     repository: "https://github.com/deepdive-01/goorm-ide-back",
-    reference:
-      "https://www.figma.com/slides/nvlcHItbwodQzcX8SNMsa3",
     visual: {
       src: "/project-visuals/coderun-architecture.png",
       alt: "CodeRun의 React, Spring Boot, Redis, PostgreSQL, Judge0와 CI/CD 구성도",
@@ -64,12 +62,10 @@ const projects = [
     name: "MOG",
     description:
       "일정 조율부터 중간지점 추천, 영수증 정산과 모임 기록까지 연결한 모임 관리 플랫폼",
-    period: "2026.06 — 2026.07",
+    period: "2026.06.01 — 2026.07.06",
     role: "BE · 팀장 · Infra · 기여도 40%",
     evidence: "영수증 인식 건당 약 0.8원",
     repository: "https://github.com/goorm-mog/mog-backend",
-    reference:
-      "https://www.figma.com/slides/nvlcHItbwodQzcX8SNMsa3",
     visual: {
       src: "/project-visuals/mog-architecture.png",
       alt: "MOG의 AWS EC2 내부 프론트엔드와 백엔드, 관리형 데이터 저장소 구성도",
@@ -123,11 +119,9 @@ const projects = [
     description:
       "CCTV 영상 데이터를 활용해 실시간 도로 파손을 탐지하고 위험도를 보여주는 서비스",
     period: "2025.07 — 2025.11",
-    role: "FE · AI · 팀장 · 기여도 60%",
+    role: "FE · AI · 팀장",
     evidence: "초기 렌더링 85% 단축",
     repository: "https://github.com/Helios-CCTV/Helios-web",
-    reference:
-      "https://www.figma.com/design/FuaFwGo8ZGyaV3nzHonpT8/CCTV-%EC%98%81%EC%83%81-%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%8F%84%EB%A1%9C-%EB%85%B8%ED%9B%84%ED%99%94-%ED%83%90%EC%A7%80-%EC%8B%9C%EC%8A%A4%ED%85%9C?node-id=449-20",
     visual: {
       src: "/project-visuals/helios-data-architecture.png",
       alt: "HELIOS의 CCTV 영상 수집, 큐 서버, HPC 전처리와 AI 학습 데이터 파이프라인",
@@ -153,9 +147,9 @@ const projects = [
         problem:
           "실제 CCTV 영상에서 여러 형태의 도로 파손을 구분하려면 원본 수집부터 전처리, 라벨링, 학습까지 일관된 파이프라인이 필요했습니다.",
         solution:
-          "전체 77,307장 중 약 5,500장을 선별해 전처리하고 13종으로 라벨링했습니다. YOLOv8n을 학습하고 GPT-5 멀티모달 검증을 추가했습니다.",
+          "전체 77,307장 중 약 5,500장을 선별해 전처리하고 13종으로 라벨링해 YOLOv8n을 학습했습니다. 탐지 결과에는 멀티모달 AI 기반 2차 검증을 적용했습니다.",
         result:
-          "탐지 결과 이미지 100장을 직접 확인해 멀티모달 재검증 결과가 90% 이상 일치하는 것을 확인했습니다.",
+          "mAP@0.5를 58.8%에서 92%로 높였고, 탐지 결과 이미지 100장 수동 검수에서 2차 검증 결과의 90% 이상이 실제 파손 데이터와 일치했습니다.",
         retrospective:
           "100장 수동 검수는 방향성을 확인하기에는 유효하지만 전체 성능을 대표하기에는 표본이 작습니다. 클래스별 정밀도와 재현율을 별도로 관리할 필요가 있습니다.",
       },
@@ -173,7 +167,7 @@ const projects = [
       },
     ],
     stack:
-      "React · TypeScript · React Query · Zustand · Python · YOLOv8 · OpenCV · GPT-5",
+      "React · TypeScript · React Query · Zustand · Python · YOLOv8 · OpenCV",
   },
 ];
 
@@ -277,15 +271,6 @@ export default function Home() {
                       aria-label={`${project.name} GitHub 저장소 열기`}
                     >
                       GitHub <span aria-hidden="true">↗</span>
-                    </a>
-                    <a
-                      className="repo-link"
-                      href={project.reference}
-                      target="_blank"
-                      rel="noreferrer"
-                      aria-label={`${project.name} 발표 자료 열기`}
-                    >
-                      발표 자료 <span aria-hidden="true">↗</span>
                     </a>
                   </div>
                 </div>
@@ -430,11 +415,18 @@ export default function Home() {
         <div className="background-block">
           <p className="eyebrow">RECOGNITION</p>
           <ul>
-            <li>NET 챌린지 캠프 시즌 12 국가보안기술연구소 소장상</li>
+            <li>2025 산학협력 캡스톤 디자인 경진대회 심화캡스톤 디자인 동상</li>
+            <li>2025 산학협력 캡스톤 디자인 경진대회 기초캡스톤 디자인 은상</li>
             <li>한국정보기술학회 우수논문상</li>
-            <li>산학협력 캡스톤 디자인 경진대회 은상 · 동상</li>
-            <li>구름 × 인프런 풀스택 과정 우수 훈련생</li>
+            <li>K-디지털 챌린지: NET 챌린지 캠프 시즌 12 국가보안기술연구소 소장상</li>
+            <li>구름 × 인프런 자바 스프링 &amp; 리액트 풀스택 개발자 성장 과정 우수 수료생</li>
           </ul>
+        </div>
+        <div className="background-block">
+          <p className="eyebrow">CERTIFICATION</p>
+          <h2>SQLD</h2>
+          <p>SQL 개발자</p>
+          <span>2026.03.27 취득</span>
         </div>
       </section>
 
