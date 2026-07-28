@@ -49,6 +49,9 @@ test("server-renders the portfolio and metadata", async () => {
     html,
     /React Query 기반 서버 상태 관리 및 중복 refetch 개선/,
   );
+  assert.match(html, /자주 바뀌는 데이터와 거의 바뀌지 않는 데이터/);
+  assert.match(html, /debounce와 캐시 범위 전략/);
+  assert.match(html, /클래스별 정밀도와 재현율/);
   assert.doesNotMatch(html, /대량 이미지 전처리와 학습 시간 단축/);
   assert.doesNotMatch(html, /FE · AI · 팀장 · 기여도 60%/);
   assert.doesNotMatch(html, /GPT-5/);
