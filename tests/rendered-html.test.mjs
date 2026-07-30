@@ -39,6 +39,11 @@ test("server-renders the portfolio and metadata", async () => {
   assert.match(html, /안전한 계정 연동·해제 정책/);
   assert.doesNotMatch(html, /인증 데이터의 성격에 맞춘 Redis 저장 구조/);
   assert.match(html, /MOG/);
+  assert.match(html, /N\+1 조회 개선으로 요약 카드 응답 성능 최적화/);
+  assert.match(html, /요약 카드 응답 45배 단축/);
+  assert.match(html, /쿼리 수를 51개에서 1개로/);
+  assert.match(html, /10,280ms에서 229ms로 45배/);
+  assert.doesNotMatch(html, /Polling을 SSE 알림 구조로 전환/);
   assert.match(html, /HELIOS/);
   assert.match(html, /SQLD/);
   assert.match(html, /SQL 개발자/);
